@@ -116,7 +116,7 @@
 <p>第一行是<strong>体系的名称</strong>，第二行是<strong>缩放因子</strong>，第三行到第五行是<strong>晶格参数</strong>，第六行是<strong>原子种类信息</strong>，第七行是<strong>原子对应的原子数</strong>，第八行是<strong>区分绝对坐标和分数坐标</strong>，第九行以后开始写的是原子位置信息。目前只能做到基于此类的转换，如果含有电荷信息可能无法使用。<strong>原子的种类限制在前111号元素，原子的个数和种类个数都不会受到限制。</strong></p>
 <p>使用脚本很简单，下载以后（Linux系统上需要装有gnu编译器）。<strong>将脚本放在与需要处理的POSCAR文件同一目录之下</strong>，使用命令：<strong>chmod +x poscar2data</strong>,为脚本增加可执行权限。</p>
 <p>然后如果需要转换的POSCAR格式文件名称就是POSCAR，那使用命令：**.&#x2F;poscar2data**，将会自动转换POSCAR文件，输出成一个新的data文件：lammps.data，即可完成。</p>
-<p> 如果你的需要转换的文件不叫POSCAR，需要输出的文件想换一个名称，可以使用命令：**.&#x2F;poscar2data (输入文件名称) (输出文件名称)** ，例如: <strong>.&#x2F;poscar2data POSCAR1 CsPbIBr.data</strong>，那么脚本就会读入<strong>POSCAR1</strong>文件，输出lampps格式的<strong>CsPbIBr.data</strong>文件。</p>
+<p> 如果你的需要转换的文件不叫POSCAR，需要输出的文件想换一个名称，可以使用命令：**.&#x2F;poscar2data (输入文件名称) (输出文件名称)** ，例如: <strong>.&#x2F;poscar2data POSCAR1 FeCoNi.data</strong>，那么脚本就会读入<strong>POSCAR1</strong>文件，输出lampps格式的<strong>FeCoNi.data</strong>文件。</p>
 <p><strong>！！！注意，如果你要输入可选参数的时候，第一个必须为输入文件的名称，第二个必须为输出文件的名称，如果只输入一个文件名称，则默认这个名称为输入文件的名称。</strong></p>
 <p>转载请注明出处：GitHub whitecrn</p>
  
