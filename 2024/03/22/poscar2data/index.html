@@ -105,13 +105,13 @@
   <p>近期处理POSCAR转换lammps的data文件的时候，需要ovito协助处理，但是命令行的大量处理好像还是成问题的（特别是我几百个POSCAR需要转换的时候，一个个手拖就不现实了）</p>
 <p>之前写过一些自动转换格式的脚本，但是只是针对于某一个特定的结构进行的，多一个原子少一个原子，原子换一下就用不了的。而我每次处理的POSCAR文件的原子种类和个数都在发生变化。于是一怒之下就写了这个通用的脚本，<strong>可以直接将含有前111号原子的POSCAR文件自动转换成lammps可读取的data文件格式。*<em><strong>支持分数坐标和绝对坐标的读取。</strong></em></strong>下载链接：<a target="_blank" rel="noopener" href="https://github.com/whitecrn/poscar2data">GitHub - whitecrn&#x2F;poscar2data: This scrip can help you transform POSCAR file to lammps data file</a></p>
 <p> 本脚本使用<strong>gfortran</strong>编写，使用的是gnu编译器。脚本所需要的依赖如下图所示。</p>
-
+ <img src="/2024/03/22/poscar2data/20240322130319.png" class>
 
 <p> 文件的源代码我没有放上来，直接上传的是编译好的文件。因为源代码里面有很多我自己写的库文件，最终合成打包起来比较麻烦，有需要的话可以联系我问我拿。源代码各文件如下图。。。。。。</p>
-
+ <img src="/2024/03/22/poscar2data/20240322132814.png" class>
 
 <p>POSCAR需要比较固定的开头格式，中间不能有空行（如果格式不是固定的，ovito也读取不了。。。。）。格式图下图所示。</p>
-
+ <img src="/2024/03/22/poscar2data/20240322130111.png" class>
 
 <p>第一行是<strong>体系的名称</strong>，第二行是<strong>缩放因子</strong>，第三行到第五行是<strong>晶格参数</strong>，第六行是<strong>原子种类信息</strong>，第七行是<strong>原子对应的原子数</strong>，第八行是<strong>区分绝对坐标和分数坐标</strong>，第九行以后开始写的是原子位置信息。目前只能做到基于此类的转换，如果含有电荷信息可能无法使用。<strong>原子的种类限制在前111号元素，原子的个数和种类个数都不会受到限制。</strong></p>
 <p>使用脚本很简单，下载以后（Linux系统上需要装有gnu编译器）。<strong>将脚本放在与需要处理的POSCAR文件同一目录之下</strong>，使用命令：<strong>chmod +x poscar2data</strong>,为脚本增加可执行权限。</p>
