@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>VASP的POSCAR格式转换lammps格式脚本 |  蜡笔的blog</title>
+      <title>Fortran快速排序 |  蜡笔的blog</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -53,7 +53,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-poscar2data"
+  id="post-Fortran快速排序"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -64,7 +64,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  VASP的POSCAR格式转换lammps格式脚本
+  Fortran快速排序
 </h1>
  
 
@@ -72,15 +72,15 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2024/03/22/poscar2data/" class="article-date">
-  <time datetime="2024-03-22T05:49:24.000Z" itemprop="datePublished">2024-03-22</time>
+      <a href="/2024/03/30/Fortran%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" class="article-date">
+  <time datetime="2024-03-30T09:39:03.000Z" itemprop="datePublished">2024-03-30</time>
 </a>   
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">762</span>
+            <span class="post-count">763</span>
         </span>
     </span>
 
@@ -89,7 +89,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">2 min</span>
+            <span class="post-count">3 min</span>
         </span>
     </span>
 </div>
@@ -102,23 +102,25 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>近期处理POSCAR转换lammps的data文件的时候，需要ovito协助处理，但是命令行的大量处理好像还是成问题的（特别是我几百个POSCAR需要转换的时候，一个个手拖就不现实了）</p>
-<p>之前写过一些自动转换格式的脚本，但是只是针对于某一个特定的结构进行的，多一个原子少一个原子，原子换一下就用不了的。而我每次处理的POSCAR文件的原子种类和个数都在发生变化。于是一怒之下就写了这个通用的脚本，<strong>可以直接将含有前111号原子的POSCAR文件自动转换成lammps可读取的data文件格式。*<em><strong>支持分数坐标和绝对坐标的读取。</strong></em></strong>下载链接：<a target="_blank" rel="noopener" href="https://github.com/whitecrn/poscar2data">GitHub - whitecrn&#x2F;poscar2data: This scrip can help you transform POSCAR file to lammps data file</a></p>
-<p> 本脚本使用<strong>gfortran</strong>编写，使用的是gnu编译器。脚本所需要的依赖如下图所示。</p>
- <img src="/2024/03/22/poscar2data/20240322130319.png" class>
+  <p>处理数据的时候经常要用排序法，但是无可奈何我好像找不到gfortran上现成的排序程序。于是自己在写数学函数库的时候，也加入了这一部分的内容。</p>
+<p>起先写的是冒泡排序，但是同学建议我冒泡排序太慢了，对于数量多起来的排序会变得非常夸张，于是乎3.29下午开始学习快速排序。3.30中午终于把gfortran的快速排序代码写好了。。。。。  算法详解什么的有空再写吧，先贴代码。。。。</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">recursive</span> <span class="function"><span class="keyword">subroutine</span></span> Fast_Sort(A,sort_type)</span><br><span class="line">        <span class="keyword">real</span> :: A(:)</span><br><span class="line">        <span class="keyword">character</span>(len=*),<span class="keyword">optional</span> :: sort_type</span><br><span class="line">        <span class="keyword">integer</span> :: head,tail,i,s</span><br><span class="line">        <span class="keyword">real</span> :: temp</span><br><span class="line">        <span class="keyword">real</span> :: pivot</span><br><span class="line">        <span class="keyword">if</span> (.not. <span class="built_in">present</span>(sort_type)) <span class="keyword">then</span></span><br><span class="line">                sort_type=<span class="string">&#x27;asc&#x27;</span></span><br><span class="line">        <span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line">        head=<span class="number">0</span></span><br><span class="line">        tail=<span class="built_in">size</span>(A)+<span class="number">1</span></span><br><span class="line">        pivot=A(<span class="number">1</span>)</span><br><span class="line">loop1:  <span class="keyword">do</span> <span class="keyword">while</span> (.true.)</span><br><span class="line">                tail=tail-<span class="number">1</span></span><br><span class="line">                head=head+<span class="number">1</span></span><br><span class="line">tail_loop:      <span class="keyword">do</span> <span class="keyword">while</span> (.true.)</span><br><span class="line">                        <span class="keyword">if</span> (A(tail) &lt;= pivot) <span class="keyword">then</span></span><br><span class="line">                                <span class="keyword">exit</span> tail_loop</span><br><span class="line">                        <span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line">                        tail=tail-<span class="number">1</span></span><br><span class="line">                <span class="keyword">end</span> <span class="keyword">do</span> tail_loop</span><br><span class="line"></span><br><span class="line">head_loop:      <span class="keyword">do</span> <span class="keyword">while</span> (.true.) </span><br><span class="line">                        <span class="keyword">if</span> (A(head) &gt; pivot) <span class="keyword">then</span></span><br><span class="line">                                <span class="keyword">exit</span> head_loop</span><br><span class="line">                        <span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line">                        head=head+<span class="number">1</span></span><br><span class="line">                        <span class="keyword">if</span> (head &gt; <span class="built_in">size</span>(A)) <span class="keyword">then</span></span><br><span class="line">                                <span class="keyword">exit</span> head_loop</span><br><span class="line">                        <span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line">                <span class="keyword">end</span> <span class="keyword">do</span> head_loop</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (head &lt; tail) <span class="keyword">then</span></span><br><span class="line">                        temp=A(head)</span><br><span class="line">                        A(head)=A(tail)</span><br><span class="line">                        A(tail)=temp</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (head == tail) <span class="keyword">then</span></span><br><span class="line">                        temp=A(head)</span><br><span class="line">                        A(head)=A(<span class="number">1</span>)</span><br><span class="line">                        A(<span class="number">1</span>)=temp</span><br><span class="line">                        <span class="keyword">exit</span> loop1</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (head &gt; tail) <span class="keyword">then</span></span><br><span class="line">                        temp=A(tail)</span><br><span class="line">                        A(tail)=A(<span class="number">1</span>)</span><br><span class="line">                        A(<span class="number">1</span>)=temp</span><br><span class="line">                        <span class="keyword">exit</span> loop1</span><br><span class="line">                <span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line">        <span class="keyword">end</span> <span class="keyword">do</span> loop1</span><br><span class="line">                <span class="keyword">if</span> (<span class="built_in">size</span>(A(:tail-<span class="number">1</span>)) &gt; <span class="number">1</span>) <span class="keyword">then</span></span><br><span class="line">                        <span class="keyword">call</span> Fast_Sort(A(:tail-<span class="number">1</span>))</span><br><span class="line">                <span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (<span class="built_in">size</span>(A(tail+<span class="number">1</span>:)) &gt; <span class="number">1</span>) <span class="keyword">then</span></span><br><span class="line">                        <span class="keyword">call</span> Fast_Sort(A(tail+<span class="number">1</span>:))</span><br><span class="line">                <span class="keyword">else</span> </span><br><span class="line">                        <span class="keyword">return</span></span><br><span class="line">                <span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">trim</span>(<span class="built_in">adjustl</span>(sort_type)) == <span class="string">&#x27;desc&#x27;</span>) <span class="keyword">then</span></span><br><span class="line">                <span class="keyword">call</span> reverse_array(A)</span><br><span class="line">        <span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">contains</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">subroutine</span></span> reverse_array(array)</span><br><span class="line">        <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">        <span class="keyword">real</span> :: array(:)</span><br><span class="line">        <span class="keyword">integer</span> :: s,i,temp</span><br><span class="line"></span><br><span class="line">        s=<span class="built_in">size</span>(array)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">do</span> i=<span class="number">1</span>,s/<span class="number">2</span></span><br><span class="line">                temp=array(i)</span><br><span class="line">                array(i)=array(s+<span class="number">1</span>-i)</span><br><span class="line">                array(s+<span class="number">1</span>-i)=temp</span><br><span class="line">        <span class="keyword">end</span> <span class="keyword">do</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span> reverse_array</span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span> Fast_Sort</span><br></pre></td></tr></table></figure>
 
-<p> 文件的源代码我没有放上来，直接上传的是编译好的文件。因为源代码里面有很多我自己写的库文件，最终合成打包起来比较麻烦，有需要的话可以联系我问我拿。源代码各文件如下图。。。。。。</p>
- <img src="/2024/03/22/poscar2data/20240322132814.png" class>
+<p>使用了Fortran递归的方法写的快速排序算法。其实本体只有升序排序，如果可选输入参数为‘desc’，这个时候就会启动后面的reverse_array程序，将升序排号的结果翻转就是降序啦（偷懒第一名。。。。，其实是不会写降序，不要问我为什么？？？）。函数我是放在模块里面使用的，所以实际上需要给这个大的程序增加一个显式接口，关于显式接口可以上网搜。简单暴力操作就是在这个程序上下方加上如下内容：</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> xxxx(自己定名字)</span><br><span class="line">contain</span><br><span class="line"></span><br><span class="line">#这里上上面的代码</span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">module</span> xxxx(和前面的名字一致)</span><br></pre></td></tr></table></figure>
 
-<p>POSCAR需要比较固定的开头格式，中间不能有空行（如果格式不是固定的，ovito也读取不了。。。。）。格式图下图所示。</p>
- <img src="/2024/03/22/poscar2data/20240322130111.png" class>
+<p>然后在主程序调用的时候在<strong>implicit none</strong>之前写上：</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line"><span class="keyword">use</span> xxx(这个名字是<span class="keyword">module</span>的名字)</span><br></pre></td></tr></table></figure>
 
-<p>第一行是<strong>体系的名称</strong>，第二行是<strong>缩放因子</strong>，第三行到第五行是<strong>晶格参数</strong>，第六行是<strong>原子种类信息</strong>，第七行是<strong>原子对应的原子数</strong>，第八行是<strong>区分绝对坐标和分数坐标</strong>，第九行以后开始写的是原子位置信息。目前只能做到基于此类的转换，如果含有电荷信息可能无法使用。<strong>原子的种类限制在前111号元素，原子的个数和种类个数都不会受到限制。</strong></p>
-<p>使用脚本很简单，下载以后（Linux系统上需要装有gnu编译器）。<strong>将脚本放在与需要处理的POSCAR文件同一目录之下</strong>，使用命令：<strong>chmod +x poscar2data</strong>,为脚本增加可执行权限。</p>
-<p>然后如果需要转换的POSCAR格式文件名称就是POSCAR，那使用命令：**.&#x2F;poscar2data**，将会自动转换POSCAR文件，输出成一个新的data文件：lammps.data，即可完成。</p>
-<p> 如果你的需要转换的文件不叫POSCAR，需要输出的文件想换一个名称，可以使用命令：**.&#x2F;poscar2data (输入文件名称) (输出文件名称)** ，例如: <strong>.&#x2F;poscar2data POSCAR1 FeCoNi.data</strong>，那么脚本就会读入<strong>POSCAR1</strong>文件，输出lampps格式的<strong>FeCoNi.data</strong>文件。</p>
-<p><strong>！！！注意，如果你要输入可选参数的时候，第一个必须为输入文件的名称，第二个必须为输出文件的名称，如果只输入一个文件名称，则默认这个名称为输入文件的名称。</strong></p>
-<p>转载请注明出处：GitHub whitecrn</p>
+<p>然后在需要使用的时候就可以：</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">call</span> Fast_Sort(A,<span class="string">&#x27;asc/desc&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>A为需要排序的数组，后一个参数可以输入字符串’asc’和’desc’，输入’asc’的时候为升序排列，’desc’时为降序排列，当不输入第二个参数或者输入的第二个参数不是‘asc’和’desc’其中之一时，默认为升序。</p>
+<p>最后是对于10w个随机数，使用冒泡排序和快速排序二者所耗时间比较，时间是cpu时间，单位应该是s吧？</p>
+<img src="/2024/03/30/Fortran%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/20240330204003.png" class>
+
+<p>效果还是很明显的，快速排序耗时远远小于冒泡排序，嘻嘻~~</p>
+<p>就这样啦，拜拜~~</p>
  
       <!-- reward -->
       
@@ -183,30 +185,23 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2024/03/22/poscar2data/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2024/03/30/Fortran%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li></ul>
+
     </footer>
   </div>
 
    
   <nav class="article-nav">
     
-      <a href="/2024/03/30/Fortran%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            Fortran快速排序
-          
-        </div>
-      </a>
     
-    
-      <a href="/2024/01/18/%E4%B8%80%E4%BA%9B%E8%AE%A1%E5%88%92%E5%92%8C%E6%83%B3%E6%B3%95/" class="article-nav-link">
+      <a href="/2024/03/22/poscar2data/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">一些计划和想法</div>
+        <div class="article-nav-title">VASP的POSCAR格式转换lammps格式脚本</div>
       </a>
     
   </nav>
