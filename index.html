@@ -140,6 +140,95 @@
     
     
     <article
+  id="post-最近写的一些全自动处理脚本"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/04/18/%E6%9C%80%E8%BF%91%E5%86%99%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E8%87%AA%E5%8A%A8%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/"
+    >最近写的一些全自动处理脚本</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/04/18/%E6%9C%80%E8%BF%91%E5%86%99%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E8%87%AA%E5%8A%A8%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/" class="article-date">
+  <time datetime="2024-04-18T10:52:04.000Z" itemprop="datePublished">2024-04-18</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>最近写了一个扩胞全自动的脚本，使用Fortran编写，挂上来以防哪天丢了。</p>
+<p><mark>第1个是一个扩胞的脚本，支持的是POSCAR格式。</mark>下载链接：<a target="_blank" rel="noopener" href="https://github.com/whitecrn/crystal_enlarge">GitHub - whitecrn&#x2F;crystal_enlarge</a>文件中的原子支持前111号原子自动识别（包括第111号原子）；7种晶系全都支持；分数坐标和绝对坐标会自动识别。单个结构中除了不要出现112号以后的元素以外，没什么大的限制。<mark>但是，文件中不能出现原子电荷信息！！！！</mark><strong>比如Li+、F-这种。</strong></p>
+<p>使用方法：需要有gnu库的支持。将文件与需要扩胞的文件放在同一目录下。使用：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x crystal_enlarge</span><br></pre></td></tr></table></figure>
+
+<p>然后再使用命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./crystal_enlarge (x方向扩胞倍数) (y方向扩胞倍数) (z方向扩胞倍数) (需要扩胞的POSCAR文件名) (扩胞后输出的文件名)</span><br></pre></td></tr></table></figure>
+
+<p>经过本人测试，从material project上随意下了几个三斜和单斜的晶胞，扩胞出来的结果都没有问题，略略略略略略！！！有技术问题或者要源代码可以想办法联系我~~0.0~</p>
+<p><mark>哦对了，如果有需要转换以后的POSCAR格式文件转换成lammps文件的格式</mark>。可以参考我之前的一个poscar2data的文件脚本。所支持的体系也和上面的类似，不支持电荷信息，支持前111号原子的自动识别（包括111）转换。参考链接：<a target="_blank" rel="noopener" href="https://whitephys.com/2024/03/22/poscar2data/">VASP的POSCAR格式转换lammps格式脚本 | 蜡笔的blog</a>。关于库的支持，在poscar2data这个网页里面有很详细的讲解。</p>
+<p>下面举一些例子，和vesta软件扩出来的完全没有区别，但可以进行超大规模扩胞（windows下的vesta扩太大直接会变得很卡），以及命令行批量操作。</p>
+<p>我扩的三斜（mp-1176991，可以上material project搜索）：</p>
+<img src="/2024/04/18/%E6%9C%80%E8%BF%91%E5%86%99%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E8%87%AA%E5%8A%A8%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/%E4%B8%89%E6%96%9C_me.png" class>
+
+<p>vesta扩的三斜（mp-1176991）：</p>
+<img src="/2024/04/18/%E6%9C%80%E8%BF%91%E5%86%99%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E8%87%AA%E5%8A%A8%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/%E4%B8%89%E6%96%9C_vesta.png" class>
+
+<p>我扩的单斜（mp-705035）:</p>
+<img src="/2024/04/18/%E6%9C%80%E8%BF%91%E5%86%99%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E8%87%AA%E5%8A%A8%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/%E5%8D%95%E6%96%9C_me.png" class>
+
+<p>vesta扩的单斜：</p>
+<img src="/2024/04/18/%E6%9C%80%E8%BF%91%E5%86%99%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E8%87%AA%E5%8A%A8%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/%E5%8D%95%E6%96%9C_vesta.png" class>
+
+<p>我扩的六方（mp-1227397）：</p>
+
+
+<p>vesta扩的六方：</p>
+
+
+<p>我扩的三方（mp-1227397）：</p>
+<img src="/2024/04/18/%E6%9C%80%E8%BF%91%E5%86%99%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E8%87%AA%E5%8A%A8%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/%E4%B8%89%E6%96%B9_me.png" class>
+
+<p>vesta扩的三方：</p>
+<img src="/2024/04/18/%E6%9C%80%E8%BF%91%E5%86%99%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E8%87%AA%E5%8A%A8%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/%E4%B8%89%E6%96%B9_vesta.png" class>
+
+<p>我扩的正交（mp-1227397）：</p>
+<img src="/2024/04/18/%E6%9C%80%E8%BF%91%E5%86%99%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E8%87%AA%E5%8A%A8%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/%E6%AD%A3%E4%BA%A4_me.png" class>
+
+<p>vesta扩的正交：</p>
+<img src="/2024/04/18/%E6%9C%80%E8%BF%91%E5%86%99%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E8%87%AA%E5%8A%A8%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/%E6%AD%A3%E4%BA%A4_vesta.png" class>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+   
+  
+</article>
+
+    
+    <article
   id="post-Fortran快速排序"
   class="article article-type-post"
   itemscope
