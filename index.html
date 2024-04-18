@@ -175,9 +175,13 @@
 <p>然后再使用命令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./crystal_enlarge (x方向扩胞倍数) (y方向扩胞倍数) (z方向扩胞倍数) (需要扩胞的POSCAR文件名) (扩胞后输出的文件名)</span><br></pre></td></tr></table></figure>
 
-<p>经过本人测试，从material project上随意下了几个三斜和单斜的晶胞，扩胞出来的结果都没有问题，略略略略略略！！！有技术问题或者要源代码可以想办法联系我~~0.0~</p>
+<p>举个例子：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./crystal_enlarge 2 3 4 POSCAR POSCAR-ENLARGE</span><br></pre></td></tr></table></figure>
+
+<p>上述代码就是将POSCAR文件进行扩胞操作，在x方向上×2 ， y方向上×3，z方向上×4，并且将扩胞的结果输出到POSCAR-ENLARGE里面。</p>
+<p>经过本人测试，从material project上随意下了几个三斜和单斜的晶胞，扩胞出来的结果都没有问题，略略略略略略！！！<strong>有技术问题或者要源代码可以想办法联系我~~0.0~</strong></p>
 <p><mark>哦对了，如果有需要转换以后的POSCAR格式文件转换成lammps文件的格式</mark>。可以参考我之前的一个poscar2data的文件脚本。所支持的体系也和上面的类似，不支持电荷信息，支持前111号原子的自动识别（包括111）转换。参考链接：<a target="_blank" rel="noopener" href="https://whitephys.com/2024/03/22/poscar2data/">VASP的POSCAR格式转换lammps格式脚本 | 蜡笔的blog</a>。关于库的支持，在poscar2data这个网页里面有很详细的讲解。</p>
-<p>下面举一些例子（随便在material project上找的结构），和vesta软件扩出来的完全没有区别，但可以进行超大规模扩胞（windows下的vesta扩太大直接会变得很卡），以及命令行批量操作。</p>
+<p>下面举一些例子（随便在material project上找的结构）。<strong>和vesta软件扩出来的完全没有区别，但可以进行超大规模扩胞（windows下的vesta扩太大直接会变得很卡），以及命令行批量操作。</strong> 不过批量使用之前，最好先用vesta扩一个胞，经过对比无误后再进行大规模扩胞（手动保命）。</p>
 <p>我扩的三斜（mp-1176991, Li<sub>6</sub>MnSb<sub>3</sub>(PO<sub>4</sub>)<sub>6</sub>）：</p>
 <img src="/2024/04/18/%E6%9C%80%E8%BF%91%E5%86%99%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E8%87%AA%E5%8A%A8%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/%E4%B8%89%E6%96%9C_me.png" class>
 
@@ -191,10 +195,10 @@
 <img src="/2024/04/18/%E6%9C%80%E8%BF%91%E5%86%99%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E8%87%AA%E5%8A%A8%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/%E5%8D%95%E6%96%9C_vesta.png" class>
 
 <p>我扩的六方（mp-1227397, BiPt<sub>2</sub>Pb）：</p>
-
+<img src="/2024/04/18/%E6%9C%80%E8%BF%91%E5%86%99%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E8%87%AA%E5%8A%A8%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/%E5%85%AD%E8%A7%92_me.png" class>
 
 <p>vesta扩的六方：</p>
-
+<img src="/2024/04/18/%E6%9C%80%E8%BF%91%E5%86%99%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E8%87%AA%E5%8A%A8%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/%E5%85%AD%E8%A7%92_vesta.png" class>
 
 <p>我扩的三方（mp-1227397, CsGeCl<sub>3</sub>）：</p>
 <img src="/2024/04/18/%E6%9C%80%E8%BF%91%E5%86%99%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E8%87%AA%E5%8A%A8%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/%E4%B8%89%E6%96%B9_me.png" class>
