@@ -53,7 +53,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-基于CUDA-CPP的平均MSD计算"
+  id="post-基于CUDA-C++的平均MSD计算"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -72,7 +72,7 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2024/12/31/%E5%9F%BA%E4%BA%8ECUDA-CPP%E7%9A%84%E5%B9%B3%E5%9D%87MSD%E8%AE%A1%E7%AE%97/" class="article-date">
+      <a href="/2024/12/31/%E5%9F%BA%E4%BA%8ECUDA-C++%E7%9A%84%E5%B9%B3%E5%9D%87MSD%E8%AE%A1%E7%AE%97/" class="article-date">
   <time datetime="2024-12-31T08:33:28.000Z" itemprop="datePublished">2024-12-31</time>
 </a>   
 <div class="word_count">
@@ -107,11 +107,11 @@
 <p>仅测试下GPU并行下的表现，没有具体对GPU代码做深入优化。GPU使用的是<mark>CUDA C++</mark>，CPU使用的是<mark>Fortran</mark>，<strong>二者在数值计算上不会差别特别大</strong>，这个是本次比较的基础（<strong>后面也会看到，使用GPU并行会比CPU单核计算本身快非常多，如果二者有差异也不会大到数量级的差别</strong>）。</p>
 <p>下面的测试CPU使用的是第10代i9，GPU使用3090Ti；使用的动力学体系是：12000原子（实际扩散离子8000原子），共10001步，数据文件大小3.69GB：</p>
 <p>i9 CPU:</p>
-<img src="/2024/12/31/%E5%9F%BA%E4%BA%8ECUDA-CPP%E7%9A%84%E5%B9%B3%E5%9D%87MSD%E8%AE%A1%E7%AE%97/GPU.jpg" class>
+<img src="/2024/12/31/%E5%9F%BA%E4%BA%8ECUDA-C++%E7%9A%84%E5%B9%B3%E5%9D%87MSD%E8%AE%A1%E7%AE%97/CPU.jpg" class>
 
 <p>只需要看红框内部的内容，第一个是对周期边界的处理：150 s；第二个是计算时间平均MSD：650 s！时间非常长，一次计算要15分钟左右，况且一次还要计算多个温度下的MSD，等的很着急♪(^∇^*)。（<strong>因为读取文件没有用上GPU并行处理，这里就不展示读取文件的速度了，读取文件大概都在80 s左右，不算特别久。</strong>）</p>
 <p>3090Ti:</p>
-<img src="/2024/12/31/%E5%9F%BA%E4%BA%8ECUDA-CPP%E7%9A%84%E5%B9%B3%E5%9D%87MSD%E8%AE%A1%E7%AE%97/GPU.jpg" class>
+<img src="/2024/12/31/%E5%9F%BA%E4%BA%8ECUDA-C++%E7%9A%84%E5%B9%B3%E5%9D%87MSD%E8%AE%A1%E7%AE%97/GPU.jpg" class>
 
 <p>只需要看红框内部的内容，第一个是对于周期边界的处理：1.07 s！！！这个时间，只占原来的0.7%！！！！！极大减少了需要计算的时间。第二个是计算时间平均MSD：111 s，时间缩短了83%！！！！！(<em>^_^</em>)，并行速度明显比单核运行的Fortran代码快非常多，而且经过数据和作图验证，<mark>二者得到的MSD数据和图像是一致的（这里就不放MSD的图了，我用的自己课题的数据做验证的）</mark></p>
 <p>（再也不能以等数据为理由摸鱼力&#x2F;(ㄒoㄒ)&#x2F;~~）拜拜啦ヾ(•ω•&#96;)o，下次见！</p>
@@ -179,7 +179,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2024/12/31/%E5%9F%BA%E4%BA%8ECUDA-CPP%E7%9A%84%E5%B9%B3%E5%9D%87MSD%E8%AE%A1%E7%AE%97/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2024/12/31/%E5%9F%BA%E4%BA%8ECUDA-C++%E7%9A%84%E5%B9%B3%E5%9D%87MSD%E8%AE%A1%E7%AE%97/" alt="微信分享二维码">
     </div>
 </div>
 
