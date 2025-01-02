@@ -168,7 +168,11 @@
     <div class="article-entry" itemprop="articleBody">
        
   <p>最近在学习C++和CUDA C++，刚好我的动力学过程需要计算MSD，无奈于原子多步数多，计算太慢，于是编写了这个基于<mark>CUDA C++</mark>的mean square displacement (MSD)计算程序。<mark>仅适用于本人自己的体系</mark>，如果要用其他体系得改一下相关参数。</p>
-<p>代码已经上传到仓库了：<a target="_blank" rel="noopener" href="https://github.com/whitecrn/MSD_GPU">GitHub - whitecrn&#x2F;MSD_GPU: a CUDA C++ program to calculate averaged mean-square-displacement.</a>，下载全部文件，在当前有文件的目录用：make命令即可，然后自己选用哪张卡算（网上有教程，一行命令的事情），然后运行编译出来的可执行文件即可。不过我编译时选的是仅支持计算能力为7.0或8.0以上的卡，具体查询自己的卡能不能算可以查询这个网站：<a target="_blank" rel="noopener" href="https://developer.nvidia.com/cuda-gpus">CUDA GPUs - Compute Capability | NVIDIA Developer</a>，不行的话可以自己改Makefile的编译内容。</p>
+<p>代码已经上传到仓库了：<a target="_blank" rel="noopener" href="https://github.com/whitecrn/MSD_GPU">GitHub - whitecrn&#x2F;MSD_GPU: a CUDA C++ program to calculate averaged mean-square-displacement.</a>，下载全部文件，在当前有文件的目录用：make命令即可，然后自己选用哪张卡算（网上有教程，一行命令的事情），然后运行编译出来的可执行文件即可。不过我编译时选的是仅支持计算能力为7.0或8.0以上的卡，具体查询自己的卡能不能算可以查询这个网站：<a target="_blank" rel="noopener" href="https://developer.nvidia.com/cuda-gpus">CUDA GPUs - Compute Capability | NVIDIA Developer</a>，不行的话可以自己改Makefile的编译内容。确保自己已经安装了CUDA，并且可以使用nvcc命令，如果不能使用nvcc命令，需要把CUDA的bin加入环境变量（具体看网上教程）。软件用法：.&#x2F;msd_gpu，后面加参数：</p>
+<p>-h: 获得参数帮助</p>
+<p>-i: 设置需要计算原子的id，默认：1</p>
+<p>-f: 输入文件的名称，默认: dump.atom</p>
+<p>-p: 时间间隔，单位ps，默认: 0.1</p>
 <p>仅测试下GPU并行下的表现，没有具体对GPU代码做深入优化。GPU使用的是<mark>CUDA C++</mark>，CPU使用的是<mark>Fortran</mark>，<strong>二者在数值计算上不会差别特别大</strong>，这个是本次比较的基础（<strong>后面也会看到，使用GPU并行会比CPU单核计算本身快非常多，如果二者有差异也不会大到数量级的差别</strong>）。</p>
 <p>下面的测试CPU使用的是第10代i9，GPU使用3090Ti；使用的动力学体系是：12000原子（实际扩散离子8000原子），共10001步，数据文件大小3.69GB：</p>
 <p>i9 CPU:</p>
@@ -596,7 +600,7 @@
     <ul>
       <li>
         Copyrights &copy;
-        2015-2024
+        2015-2025
         <i class="ri-heart-fill heart_icon"></i> 白色的蜡笔
       </li>
     </ul>
