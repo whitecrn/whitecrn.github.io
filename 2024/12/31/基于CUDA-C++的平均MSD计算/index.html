@@ -80,7 +80,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">827</span>
+            <span class="post-count">819</span>
         </span>
     </span>
 
@@ -102,7 +102,7 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>最近在学习C++和CUDA C++，刚好我的动力学过程需要计算MSD，无奈于原子多步数多，计算太慢，于是编写了这个基于<mark>CUDA C++</mark>的mean square displacement (MSD)计算程序。<mark>仅适用于本人自己的体系</mark>，如果要用其他体系得改一下相关参数。</p>
+  <p>最近在学习C++和CUDA C++，刚好我的动力学过程需要计算MSD，无奈于原子多步数多，计算太慢，于是编写了这个基于<mark>CUDA C++</mark>的mean square displacement (MSD)计算程序。基本所有的体系无论原子数多少都可以用了。</p>
 <p>代码已经上传到仓库了：<a target="_blank" rel="noopener" href="https://github.com/whitecrn/MSD_GPU">GitHub - whitecrn&#x2F;MSD_GPU: a CUDA C++ program to calculate averaged mean-square-displacement.</a>，下载全部文件，在当前有文件的目录用：make命令即可，然后自己选用哪张卡算（网上有教程，一行命令的事情），然后运行编译出来的可执行文件即可。不过我编译时选的是仅支持计算能力为7.0或8.0以上的卡，具体查询自己的卡能不能算可以查询这个网站：<a target="_blank" rel="noopener" href="https://developer.nvidia.com/cuda-gpus">CUDA GPUs - Compute Capability | NVIDIA Developer</a>，不行的话可以自己改Makefile的编译内容。确保自己已经安装了CUDA，并且可以使用nvcc命令，如果不能使用nvcc命令，需要把CUDA的bin加入环境变量（具体看网上教程）。软件用法：.&#x2F;msd_gpu，后面加参数：</p>
 <p>-h: 获得参数帮助</p>
 <p>-i: 设置需要计算原子的id，默认：1</p>
@@ -308,11 +308,12 @@
     
   </ul>
 </nav>
+
 <nav class="navbar navbar-bottom">
   <ul class="nav">
     <li class="nav-item">
       
-      <a class="nav-item-link nav-item-search"  title="Search">
+      <a class="nav-item-link nav-item-search" title="Search">
         <i class="ri-search-line"></i>
       </a>
       
@@ -324,12 +325,22 @@
     </li>
   </ul>
 </nav>
+
+<!-- 站点统计 ClustrMaps -->
+<div class="clustrmaps-container" style="text-align:center; margin-top:10px;">
+  <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=zs0ZYTPrRtVgK_hLLhXdvASeR4ecZC1j1SIBKhh3N8I&cl=ffffff&w=a"></script>
+  <a target="_blank" rel="noopener" href="https://clustrmaps.com/site/1c4qj" title="ClustrMaps">
+    <img src="//www.clustrmaps.com/map_v2.png?d=zs0ZYTPrRtVgK_hLLhXdvASeR4ecZC1j1SIBKhh3N8I&cl=ffffff" />
+  </a>
+</div>
+
 <div class="search-form-wrap">
   <div class="local-search local-search-plugin">
   <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
   <div id="local-search-result" class="local-search-result"></div>
 </div>
 </div>
+
     </aside>
     <div id="mask"></div>
 
