@@ -1,278 +1,532 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="pragma" content="no-cache">
-  <meta http-equiv="cache-control" content="no-cache">
-  <meta http-equiv="expires" content="0">
-  
-  <title>VASP的POSCAR格式转换lammps格式脚本 | 蜡笔的blog</title>
-  <meta name="author" content="白色的蜡笔">
-  
-  <meta name="description" content="近期处理POSCAR转换lammps的data文件的时候，需要ovito协助处理，但是命令行的大量处理好像还是成问题的（特别是我几百个POSCAR需要转换的时候，一个个手拖就不现实了）
-之前写过一些自动转换格式的脚本，但是只是针对于某一个特定的结构进行的，多一个原子少一个原子，原子换一下就用不了的。">
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="theme-color" content="#317EFB" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta name="description" content="近期处理POSCAR转换lammps的data文件的时候，需要ovito协助处理，但是命令行的大量处理好像还是成问题的（特别是我几百个POSCAR需要转换的时候，一个个手拖就不现实了） 之前写过一些自动转换格式的脚本，但是只是针对于某一个特定的结构进行的，多一个原子少一个原子，原子换一下就用不了的。而我每次处理的POSCAR文件的原子种类和个数都在发生变化。于是一怒之下就写了这个通用的脚本，可以直">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VASP的POSCAR格式转换lammps格式脚本">
+<meta property="og:url" content="http://example.com/2024/03/22/poscar2data/index.html">
+<meta property="og:site_name" content="蜡笔的blog">
+<meta property="og:description" content="近期处理POSCAR转换lammps的data文件的时候，需要ovito协助处理，但是命令行的大量处理好像还是成问题的（特别是我几百个POSCAR需要转换的时候，一个个手拖就不现实了） 之前写过一些自动转换格式的脚本，但是只是针对于某一个特定的结构进行的，多一个原子少一个原子，原子换一下就用不了的。而我每次处理的POSCAR文件的原子种类和个数都在发生变化。于是一怒之下就写了这个通用的脚本，可以直">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="article:published_time" content="2024-03-22T05:49:24.000Z">
+<meta property="article:modified_time" content="2024-03-23T06:52:08.299Z">
+<meta property="article:author" content="白色的蜡笔">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/404.jpg">
 
-  <meta property="og:title" content="VASP的POSCAR格式转换lammps格式脚本"/>
-  <meta property="og:site_name" content="蜡笔的blog"/>
 
-  
-    <meta property="og:image" content=""/>
-  
+<title >VASP的POSCAR格式转换lammps格式脚本</title>
 
-  
-    <link rel="alternative" href="/atom.xml" title="蜡笔的blog" type="application/atom+xml">
-  
-  
-    <link href="/favicon.png" rel="icon">
-  
-  
-  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/prism.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<!-- Favicon -->
 
-  <script src="/js/jquery-2.0.3.min.js"></script>
+    <link href='/img/favicon.svg?v=2.2.6' rel='icon' type='image/png' sizes='16x16' ></link>
 
-  <!-- analytics -->
-  
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-70812759-1"></script>
+
+    <link href='/img/favicon.svg?v=2.2.6' rel='icon' type='image/png' sizes='32x32' ></link>
+
+
+
+
+<!-- Plugin -->
+
+
+
+
+    
+<link rel="stylesheet" href="/css/plugins/bootstrap.row.css">
+
+    
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css">
+
+    
+    
+
+
+
+
+<!-- Icon -->
+
+    
+<link rel="stylesheet" href="/css/plugins/font-awesome.min.css">
+
+
+
+
+<!-- Variable -->
+<script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"白色的蜡笔","root":"/","typed_text":null,"theme_version":"2.2.6","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/img/favicon.svg","icon16":"/img/favicon.svg","icon32":"/img/favicon.svg","apple_touch_icon":null,"webmanifest":null,"visibilitychange":false,"hidden":"/failure.ico","show_text":"(/≧▽≦/)Hey! Good again!","hide_text":"(●—●)Oh, crash!"},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}.","hits":"${hits} results found","hits_time":"${hits} results found in ${time} ms","author":"Post author: ","copyright_link":"Post link: ","copyright_license_title":"Copyright Notice: ","copyright_license_content":"All articles in this blog are licensed under undefined unless otherwise stated.","copy_success":"Copied","copy_failure":"Copy failed","open_read_mode":"Enter reading mode","exit_read_mode":"Exit reading mode","notice_outdate_message":"It has been undefined days since the last update, the content of the article may be outdated.","sticky":"TOP","just":"Just","min":"minutes ago","hour":"hours ago","day":"days ago","month":"months ago"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false},"toc":{"post_title":true},"live_time":{"start_time":"","prefix":"The blog has been lovely to run undefined day"},"danmu":{"enable":false,"el":".trm-banner"}};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2024-03-23 14:52:08"};</script>
+
+<!-- Theme mode css -->
+<link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.2.6" id="trm-switch-style">
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-70812759-1');
+    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
+    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
+    let type = catchMode === 'style-dark' ? 'add' : 'remove';
+    document.documentElement.classList[type]('dark')
 </script>
 
+<!-- CDN -->
+
+
+    
+    
 
 
 
+<!-- Site Analytics -->
 
+ 
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.1.1"></head>
 
-<meta name="generator" content="Hexo 7.1.1"></head>
+<body>
 
- <body>  
-  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-		<span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-	  <a class="navbar-brand" href="/">蜡笔的blog</a>
-      <div class="collapse navbar-collapse nav-menu">
-		<ul class="nav navbar-nav">
-		  
-		  <li>
-			<a href="/archives" title="All the articles.">
-			  <i class=""></i>Archives
-			</a>
-		  </li>
-		  
-		  <li>
-			<a href="/categories" title="All the categories.">
-			  <i class=""></i>Categories
-			</a>
-		  </li>
-		  
-		  <li>
-			<a href="/tags" title="All the tags.">
-			  <i class=""></i>Tags
-			</a>
-		  </li>
-		  
-		  <li>
-			<a href="/about" title="About me.">
-			  <i class=""></i>About
-			</a>
-		  </li>
-		  
-		  <li>
-			<a href="/atom.xml" title="Subscribe me.">
-			  <i class=""></i>RSS
-			</a>
-		  </li>
-		  
-		</ul>
-      </div>
-    </div> <!-- container -->
-</nav>
-<div class="clearfix"></div>
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
 
-  <div class="container">
-  	<div class="content">
-    	 
+    <!-- page preloader -->
+    <div class="trm-preloader">
+    <div class="trm-holder">
+        <div class="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+    <!-- page preloader end -->
 
+    <!-- change mode preloader -->
+    <div class="trm-mode-swich-animation-frame">
+    <div class="trm-mode-swich-animation">
+        <i class="i-sun"><i class="iconfont far fa-sun"></i></i>
+        <div class="trm-horizon"></div>
+        <i class="i-moon"><i class="iconfont far fa-moon"></i></i>
+    </div>
+</div>
+    <!-- change mode preloader end -->
 
-	
-		<div class="page-header">
-			<h1> VASP的POSCAR格式转换lammps格式脚本</h1>
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" style="opacity: 0">
+            <!-- top bar -->
+            <header class="trm-top-bar">
+	<div class="container">
+		<div class="trm-left-side">
+			<!-- logo -->
+<a href="/" class="trm-logo-frame trm-anima-link">
+    
+        <img alt="logo" src="/img/favicon.svg">
+    
+    
+        <div class="trm-logo-text">
+            Async<span>Theme</span>
+        </div>
+    
+</a>
+<!-- logo end -->
 		</div>
-	
+		<div class="trm-right-side">
+			<!-- menu -->
+<div class="trm-menu">
+    <nav>
+        <ul>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/" target="">
+                    Home
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/archives/" target="">
+                    Archives
+                </a>
+                
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+<!-- menu end -->
+			
+    <!-- mode switcher place -->
+    <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <i class="iconfont far fa-sun"></i>
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+            <i class="iconfont far fa-moon"></i>
+        </div>
+    </div>
+    <!-- mode switcher place end -->
 
+			
+		</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</header>
+            <!-- top bar end -->
 
+            <!-- body -->
+            
+<div class="trm-content-start">
+    <!-- banner -->
+    <div class="trm-banner">
+    
+    <!-- banner cover -->
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" src="/img/banner.png">
+    <!-- banner cover end -->
+    
 
-<div class="row post">
-	<!-- cols -->
-	
-	<div id="top_meta"></div>
-	<div class="col-md-9">
-	
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-4"></div>
+                
+                <div class="col-lg-8">
 
-	<!-- content -->
-	<div class="mypage">		
-	  		
+                    <!-- banner title -->
+                    <div class="trm-banner-text ">
+                        <div class="trm-label trm-mb-20">
+                            NEWS LETTER
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            VASP的POSCAR格式转换lammps格式脚本
+                        </h1>
 
-	  <p>近期处理POSCAR转换lammps的data文件的时候，需要ovito协助处理，但是命令行的大量处理好像还是成问题的（特别是我几百个POSCAR需要转换的时候，一个个手拖就不现实了）</p>
-<p>之前写过一些自动转换格式的脚本，但是只是针对于某一个特定的结构进行的，多一个原子少一个原子，原子换一下就用不了的。而我每次处理的POSCAR文件的原子种类和个数都在发生变化。于是一怒之下就写了这个通用的脚本，<strong>可以直接将含有前111号原子的POSCAR文件自动转换成lammps可读取的data文件格式。*<em><strong>支持分数坐标和绝对坐标的读取。</strong></em></strong>下载链接：<a target="_blank" rel="noopener" href="https://github.com/whitecrn/poscar2data">GitHub - whitecrn&#x2F;poscar2data: This scrip can help you transform POSCAR file to lammps data file</a></p>
-<p> 本脚本使用<strong>gfortran</strong>编写，使用的是gnu编译器。脚本所需要的依赖如下图所示。</p>
- <img src="/2024/03/22/poscar2data/20240322130319.png" class>
+                        
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        2024
+                                    </span>
+                                </li>
+                            </ul>
+                        
+                    </div>
+                    <!-- banner title end -->
 
-<p> 文件的源代码我没有放上来，直接上传的是编译好的文件。因为源代码里面有很多我自己写的库文件，最终合成打包起来比较麻烦，有需要的话可以联系我问我拿。源代码各文件如下图。。。。。。</p>
- <img src="/2024/03/22/poscar2data/20240322132814.png" class>
+                    <!-- scroll hint -->
+                    <span id="scroll-triger" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label">Scroll down</span>
+                    </span>
+                    <!-- scroll hint end -->
 
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
+    <!-- banner end -->
+    <div class="container">
+        <div class="row">
+            
+                <div class="trm-page-sidebar col-lg-4 hidden-sm">
+                    <!-- main card -->
+                    <div class="trm-main-card-frame trm-sidebar">
+    <div class="trm-main-card"> 
+        <!-- card header -->
+<div class="trm-mc-header">
+    <div class="trm-avatar-frame trm-mb-20">
+        <img alt="Avatar" class="trm-avatar" src="/img/avatar.jpg">
+    </div>
+    <h5 class="trm-name trm-mb-15">
+        ThemeAsync
+    </h5>
+    
+</div>
+<!-- card header end -->
+        <!-- sidebar social -->
+
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<div class="trm-social">
+    
+        <a href="https://github.com" title="Github" rel="nofollow" target="_blank">
+            <i class="iconfont fab fa-github"></i>
+        </a>
+    
+</div>
+
+<!-- sidebar social end -->
+        <!-- info -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<ul class="trm-table trm-mb-20">
+    
+        <li>
+            <div class="trm-label">
+                Residence:
+            </div>
+            <div class="trm-label trm-label-light">
+                Mars
+            </div>
+        </li>
+    
+</ul>
+<!-- info end -->
+
+        
+    </div>
+</div>
+                    <!-- main card end -->
+                </div>
+            
+            <div class="trm-page-content col-lg-8">
+                <div id="trm-content" class="trm-content">
+                    <div class="trm-post-info row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-calendar-alt trm-icon"></i><br>
+            03/22
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-clock trm-icon"></i><br>
+            13:49
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-user trm-icon"></i><br>
+            白色的蜡笔
+        </div>
+    </div>
+</div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <p>近期处理POSCAR转换lammps的data文件的时候，需要ovito协助处理，但是命令行的大量处理好像还是成问题的（特别是我几百个POSCAR需要转换的时候，一个个手拖就不现实了）</p>
+<p>之前写过一些自动转换格式的脚本，但是只是针对于某一个特定的结构进行的，多一个原子少一个原子，原子换一下就用不了的。而我每次处理的POSCAR文件的原子种类和个数都在发生变化。于是一怒之下就写了这个通用的脚本，<strong>可以直接将含有前111号原子的POSCAR文件自动转换成lammps可读取的data文件格式。**</strong>支持分数坐标和绝对坐标的读取。<strong>*</strong>下载链接：<a target="_blank" rel="noopener" href="https://github.com/whitecrn/poscar2data">GitHub - whitecrn/poscar2data: This scrip can help you transform POSCAR file to lammps data file</a></p>
+<p> 本脚本使用<strong>gfortran</strong>编写，使用的是gnu编译器。脚本所需要的依赖如下图所示。</p>
+ <img src="/2024/03/22/poscar2data/20240322130319.png" class  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'>
+<p> 文件的源代码我没有放上来，直接上传的是编译好的文件。因为源代码里面有很多我自己写的库文件，最终合成打包起来比较麻烦，有需要的话可以联系我问我拿。源代码各文件如下图。。。。。。</p>
+ <img src="/2024/03/22/poscar2data/20240322132814.png" class  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'>
 <p>POSCAR需要比较固定的开头格式，中间不能有空行（如果格式不是固定的，ovito也读取不了。。。。）。格式图下图所示。</p>
- <img src="/2024/03/22/poscar2data/20240322130111.png" class>
-
+ <img src="/2024/03/22/poscar2data/20240322130111.png" class  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'>
 <p>第一行是<strong>体系的名称</strong>，第二行是<strong>缩放因子</strong>，第三行到第五行是<strong>晶格参数</strong>，第六行是<strong>原子种类信息</strong>，第七行是<strong>原子对应的原子数</strong>，第八行是<strong>区分绝对坐标和分数坐标</strong>，第九行以后开始写的是原子位置信息。目前只能做到基于此类的转换，如果含有电荷信息可能无法使用。<strong>原子的种类限制在前111号元素，原子的个数和种类个数都不会受到限制。</strong></p>
 <p>使用脚本很简单，下载以后（Linux系统上需要装有gnu编译器）。<strong>将脚本放在与需要处理的POSCAR文件同一目录之下</strong>，使用命令：<strong>chmod +x poscar2data</strong>,为脚本增加可执行权限。</p>
-<p>然后如果需要转换的POSCAR格式文件名称就是POSCAR，那使用命令：**.&#x2F;poscar2data**，将会自动转换POSCAR文件，输出成一个新的data文件：lammps.data，即可完成。</p>
-<p> 如果你的需要转换的文件不叫POSCAR，需要输出的文件想换一个名称，可以使用命令：**.&#x2F;poscar2data (输入文件名称) (输出文件名称)** ，例如: <strong>.&#x2F;poscar2data POSCAR1 FeCoNi.data</strong>，那么脚本就会读入<strong>POSCAR1</strong>文件，输出lampps格式的<strong>FeCoNi.data</strong>文件。</p>
+<p>然后如果需要转换的POSCAR格式文件名称就是POSCAR，那使用命令：<strong>./poscar2data</strong>，将会自动转换POSCAR文件，输出成一个新的data文件：lammps.data，即可完成。</p>
+<p> 如果你的需要转换的文件不叫POSCAR，需要输出的文件想换一个名称，可以使用命令：<strong>./poscar2data (输入文件名称) (输出文件名称)</strong> ，例如: <strong>./poscar2data POSCAR1 FeCoNi.data</strong>，那么脚本就会读入<strong>POSCAR1</strong>文件，输出lampps格式的<strong>FeCoNi.data</strong>文件。</p>
 <p><strong>！！！注意，如果你要输入可选参数的时候，第一个必须为输入文件的名称，第二个必须为输出文件的名称，如果只输入一个文件名称，则默认这个名称为输入文件的名称。</strong></p>
 <p>转载请注明出处：GitHub whitecrn</p>
 
-	  <div class="article-footer-copyright">
+</article>
+    
+    
 
-    本博客采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议(CC BY-NC-SA 4.0) 发布.</a>
+</div>
+<div class="trm-post-next-prev row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            Other Articles
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/2024/03/30/Fortran%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/img/block.jpg">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" #.">
+                    Unclassified
+                </a>
+            </div>
+            <h5>
+                <a href="/2024/03/30/Fortran%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" class="trm-anima-link">
+                    Fortran快速排序
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>24/03/30</li>
+                <li>17:39</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/2024/01/18/%E4%B8%80%E4%BA%9B%E8%AE%A1%E5%88%92%E5%92%8C%E6%83%B3%E6%B3%95/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/img/block.jpg">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" #.">
+                    Unclassified
+                </a>
+            </div>
+            <h5>
+                <a href="/2024/01/18/%E4%B8%80%E4%BA%9B%E8%AE%A1%E5%88%92%E5%92%8C%E6%83%B3%E6%B3%95/" class="trm-anima-link">
+                    一些计划和想法
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>24/01/18</li>
+                <li>17:46</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
 </div>
 
-	</div>
-
-	
-	
-	<div>
-  	<center>
-
-	<div class="pagination">
-
-    
-    
-    <a href="/2024/03/30/Fortran快速排序/" type="button" class="btn btn-default"><i
-                class="fa fa-arrow-circle-o-left"></i> Prev</a>
     
 
-    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
-    
-    <a href="/2024/01/18/一些计划和想法/" type="button" class="btn btn-default ">Next<i
-                class="fa fa-arrow-circle-o-right"></i></a>
+
+
+                    <div class="trm-divider footer-divider"></div>
+
+                    <!-- footer -->
+                    <footer class="trm-footer-card trm-scroll-animation">
+
     
 
     
+
+    
+        <div class="trm-footer-item">
+            <span>
+                Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> v7.1.1
+            </span>
+            <span class="footer-separator" data-separator=" | "></span>
+            <span> 
+                Theme - 
+                <a rel="noopener" href='https://github.com/MaLuns/hexo-theme-async' target='_blank'>Async</a>
+                v2.2.6
+            </span>
+        </div>
+      
+
+     
+
+     
+</footer>
+                    <!-- footer end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+            <!-- body end -->
 
+            
 
-    </center>
-	</div>
-	
-	<!-- comment -->
-	<!--
-<section id="comment">
-    <h2 class="title">Comments</h2>
-
+            
+<div class="trm-fixed-container">
     
-</section>
-
--->
-	
-	
-	
-	</div> <!-- col-md-9/col-md-12 -->
-
-
-	
-	<div id="side_meta">
-		<div class="col-md-3" id="post_meta"> 
-
-	<!-- date -->
-	
-	<div class="meta-widget">
-	<i class="fa fa-clock-o"></i>
-	2024-03-22 
-	</div>
-	
-
-	<!-- categories -->
     
-
-	<!-- tags -->
-		
-
-	<!-- toc -->
-	<div class="meta-widget">
-	
-	</div>
-	
-    <hr>
-	
-</div><!-- col-md-3 -->
-
-		
-
-	</div>
-	
-		
-
-</div><!-- row -->
-
-<!--
- -->
-
-
-
-	</div>
+        <div class="trm-fixed-btn" data-title="Read Mode" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont fas fa-book-reader"></i>
+        </div>
+    
+    
+    <div id="trm-back-top" class="trm-fixed-btn" data-title="Back To Top">
+        <i class="iconfont fas fa-arrow-up"></i>
+    </div>
+</div>
+        </div>
+      </div>
+      <!-- scroll container end -->
   </div>
-  <div class="container-narrow">
-  <footer> <p>
-  
-  &copy; 2025 白色的蜡笔's Blog
-  
-      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>  
-</p>
- </footer>
-</div> <!-- container-narrow -->
-  
-
+  <!-- app wrapper end -->
 
   
-<a id="gotop" href="#">   
-  <span>⬆︎TOP</span>
-</a>
-
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/main.js"></script>
-<script src="/js/search.js"></script> 
+  <!-- Plugin -->
 
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
+
+
+    
+    
+<script src="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+    
+
+    
+
+    
+
+    <!-- 数学公式 -->
+    
+
+    <!-- 评论插件 -->
+    
+        
+
+        
+    
+
+		
+
+
+
+
+    <!-- Service Worker -->
+    
+    <!-- baidu push -->
+    
+
+
+<script id="async-script" src="/js/main.js?v=2.2.6"></script>
+
+<!-- CDN -->
+
+
+    
+
+    
+
+    
 
 
 
 </body>
-   </html>
+
+</html>

@@ -1,584 +1,611 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="pragma" content="no-cache">
-  <meta http-equiv="cache-control" content="no-cache">
-  <meta http-equiv="expires" content="0">
-  
-  <title>蜡笔的blog</title>
-  <meta name="author" content="白色的蜡笔">
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="theme-color" content="#317EFB" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta property="og:type" content="website">
+<meta property="og:title" content="蜡笔的blog">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="蜡笔的blog">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="白色的蜡笔">
+<meta name="twitter:card" content="summary">
 
-  
-  <meta property="og:site_name" content="蜡笔的blog"/>
 
-  
-    <meta property="og:image" content=""/>
-  
+<title >蜡笔的blog</title>
 
-  
-    <link rel="alternative" href="/atom.xml" title="蜡笔的blog" type="application/atom+xml">
-  
-  
-    <link href="/favicon.png" rel="icon">
-  
-  
-  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/prism.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<!-- Favicon -->
 
-  <script src="/js/jquery-2.0.3.min.js"></script>
+    <link href='/img/favicon.svg?v=2.2.6' rel='icon' type='image/png' sizes='16x16' ></link>
 
-  <!-- analytics -->
-  
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-70812759-1"></script>
+
+    <link href='/img/favicon.svg?v=2.2.6' rel='icon' type='image/png' sizes='32x32' ></link>
+
+
+
+
+<!-- Plugin -->
+
+
+
+
+    
+<link rel="stylesheet" href="/css/plugins/bootstrap.row.css">
+
+    
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css">
+
+    
+    
+
+
+
+
+<!-- Icon -->
+
+    
+<link rel="stylesheet" href="/css/plugins/font-awesome.min.css">
+
+
+
+
+<!-- Variable -->
+<script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"白色的蜡笔","root":"/","typed_text":null,"theme_version":"2.2.6","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/img/favicon.svg","icon16":"/img/favicon.svg","icon32":"/img/favicon.svg","apple_touch_icon":null,"webmanifest":null,"visibilitychange":false,"hidden":"/failure.ico","show_text":"(/≧▽≦/)Hey! Good again!","hide_text":"(●—●)Oh, crash!"},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}.","hits":"${hits} results found","hits_time":"${hits} results found in ${time} ms","author":"Post author: ","copyright_link":"Post link: ","copyright_license_title":"Copyright Notice: ","copyright_license_content":"All articles in this blog are licensed under undefined unless otherwise stated.","copy_success":"Copied","copy_failure":"Copy failed","open_read_mode":"Enter reading mode","exit_read_mode":"Exit reading mode","notice_outdate_message":"It has been undefined days since the last update, the content of the article may be outdated.","sticky":"TOP","just":"Just","min":"minutes ago","hour":"hours ago","day":"days ago","month":"months ago"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false},"toc":{"post_title":true},"live_time":{"start_time":"","prefix":"The blog has been lovely to run undefined day"},"danmu":{"enable":false,"el":".trm-banner"}};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":false,"isHome":true,"postUpdate":"2025-05-23 20:43:50"};</script>
+
+<!-- Theme mode css -->
+<link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.2.6" id="trm-switch-style">
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-70812759-1');
+    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
+    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
+    let type = catchMode === 'style-dark' ? 'add' : 'remove';
+    document.documentElement.classList[type]('dark')
 </script>
 
+<!-- CDN -->
 
 
-
-
-
-<meta name="generator" content="Hexo 7.1.1"></head>
-
- <body>  
-  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-		<span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-	  <a class="navbar-brand" href="/">蜡笔的blog</a>
-      <div class="collapse navbar-collapse nav-menu">
-		<ul class="nav navbar-nav">
-		  
-		  <li>
-			<a href="/archives" title="All the articles.">
-			  <i class=""></i>Archives
-			</a>
-		  </li>
-		  
-		  <li>
-			<a href="/categories" title="All the categories.">
-			  <i class=""></i>Categories
-			</a>
-		  </li>
-		  
-		  <li>
-			<a href="/tags" title="All the tags.">
-			  <i class=""></i>Tags
-			</a>
-		  </li>
-		  
-		  <li>
-			<a href="/about" title="About me.">
-			  <i class=""></i>About
-			</a>
-		  </li>
-		  
-		  <li>
-			<a href="/atom.xml" title="Subscribe me.">
-			  <i class=""></i>RSS
-			</a>
-		  </li>
-		  
-		</ul>
-      </div>
-    </div> <!-- container -->
-</nav>
-<div class="clearfix"></div>
-
-  <div class="container">
-  	<div class="content">
-    	 <div class="page-header logo">
-  <h1>蜡笔的blog<span class="blink-fast">|</span></h1>
-</div>
-
-<div class="row page">
-
-	
-	<div class="col-md-9">
-	
-
-		<div class="slogan">
-
-
-		<i class="fa fa-heart blink-slow"></i>
-
-		This is home of white_crayon
-
-</div>    
-
-		<div id="top_search"></div>
-		<div class="mypage">
-		
-		<!-- title and entry -->
-		
-			
-	
-	<!-- display as entry -->
-<div class="row">
-	<div class="col-md-8">
-		<h3 class="title">
-			<a href="/2024/12/31/基于CUDA-C++的平均MSD计算/" >使用CUDA C++编写平均MSD计算</a>
-		</h3>
-		</div>
-	<div class="col-md-4">
-		<div class="date">post @ 2024-12-31  </div>
-		</div>
-	</div>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>最近在学习C++和CUDA C++，刚好我的动力学过程需要计算MSD，无奈于原子多步数多，计算太慢，于是编写了这个基于<mark>CUDA C++</mark>的mean square displacement (MSD)计算程序。基本所有的体系无论原子数多少都可以用了。</p>
-<p>代码已经上传到仓库了：<a target="_blank" rel="noopener" href="https://github.com/whitecrn/MSD_GPU">GitHub - whitecrn&#x2F;MSD_GPU: a CUDA C++ program to calculate averaged mean-square-displacement.</a>，下载全部文件，在当前有文件的目录用：make命令即可，然后自己选用哪张卡算（网上有教程，一行命令的事情），然后运行编译出来的可执行文件即可。不过我编译时选的是仅支持计算能力为7.0或8.0以上的卡，具体查询自己的卡能不能算可以查询这个网站：<a target="_blank" rel="noopener" href="https://developer.nvidia.com/cuda-gpus">CUDA GPUs - Compute Capability | NVIDIA Developer</a>，不行的话可以自己改Makefile的编译内容。确保自己已经安装了CUDA，并且可以使用nvcc命令，如果不能使用nvcc命令，需要把CUDA的bin加入环境变量（具体看网上教程）。软件用法：.&#x2F;msd_gpu，后面加参数：</p>
-<p>-h: 获得参数帮助</p>
-<p>-i: 设置需要计算原子的id，默认：1</p>
-<p>-f: 输入文件的名称，默认: dump.atom</p>
-<p>-p: 时间间隔，单位ps，默认: 0.1</p>
-<p>仅测试下GPU并行下的表现，没有具体对GPU代码做深入优化。GPU使用的是<mark>CUDA C++</mark>，CPU使用的是<mark>Fortran</mark>，<strong>二者在数值计算上不会差别特别大</strong>，这个是本次比较的基础（<strong>后面也会看到，使用GPU并行会比CPU单核计算本身快非常多，如果二者有差异也不会大到数量级的差别</strong>）。</p>
-<p>下面的测试CPU使用的是第10代i9，GPU使用3090Ti；使用的动力学体系是：12000原子（实际扩散离子8000原子），共10001步，数据文件大小3.69GB：</p>
-<p>i9 CPU:</p>
-<img src="/2024/12/31/%E5%9F%BA%E4%BA%8ECUDA-C++%E7%9A%84%E5%B9%B3%E5%9D%87MSD%E8%AE%A1%E7%AE%97/CPU.jpg" class>
-
-<p>只需要看红框内部的内容，第一个是对周期边界的处理：150 s；第二个是计算时间平均MSD：650 s！时间非常长，一次计算要15分钟左右，况且一次还要计算多个温度下的MSD，等的很着急♪(^∇^*)。（<strong>因为读取文件没有用上GPU并行处理，这里就不展示读取文件的速度了，读取文件大概都在80 s左右，不算特别久。</strong>）</p>
-<p>3090Ti:</p>
-<img src="/2024/12/31/%E5%9F%BA%E4%BA%8ECUDA-C++%E7%9A%84%E5%B9%B3%E5%9D%87MSD%E8%AE%A1%E7%AE%97/GPU.jpg" class>
-
-<p>只需要看红框内部的内容，第一个是对于周期边界的处理：1.07 s！！！这个时间，只占原来的0.7%！！！！！极大减少了需要计算的时间。第二个是计算时间平均MSD：111 s，时间缩短了83%！！！！！(<em>^_^</em>)，并行速度明显比单核运行的Fortran代码快非常多（这里还要说一下因为比较懒，Fortran的cpu代码用的单精度浮点数，CUDA C++我用的全都是double双精度浮点数，所以二者如果统一一下的话，实际上会更快更快）而且经过数据和作图验证，<mark>二者得到的MSD数据和图像是一致的（这里就不放MSD的图了，我用的自己课题的数据做验证的）</mark></p>
-<p>（再也不能以等数据为理由摸鱼力&#x2F;(ㄒoㄒ)&#x2F;~~）拜拜啦ヾ(•ω•&#96;)o，下次见！</p>
-
-	
-	</div>
-  <a type="button" href="/2024/12/31/基于CUDA-C++的平均MSD计算/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-<div class="row">
-	<div class="col-md-8">
-		<h3 class="title">
-			<a href="/2024/07/29/非正交晶胞正交化方法/" >非正交晶胞正交化方法</a>
-		</h3>
-		</div>
-	<div class="col-md-4">
-		<div class="date">post @ 2024-07-29  </div>
-		</div>
-	</div>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>最近在处理的结构的时候，本来是正交的晶胞，由于我切了某个面以后，变成了非正交的了（比如说<strong>a</strong>和<strong>b</strong>并不垂直，但是<strong>c</strong>还是垂直于ab构成的平面）。懒人做法当然是上网搜教程啦~~~~，这里的内容我是从b站学习来的，有兴趣可以去原地址看视频：BV16a4y1R7qB，在B站搜索即可，我也是学习原视频学来的。</p>
-<p>其实方法非常简单。比如说POSCAR文件，我们仅仅讨论两个不垂直的晶格矢量<strong>a</strong>和<strong>b</strong>:</p>
-<img src="/2024/07/29/%E9%9D%9E%E6%AD%A3%E4%BA%A4%E6%99%B6%E8%83%9E%E6%AD%A3%E4%BA%A4%E5%8C%96%E6%96%B9%E6%B3%95/1.jpg" class>
-
-<img src="/2024/07/29/%E9%9D%9E%E6%AD%A3%E4%BA%A4%E6%99%B6%E8%83%9E%E6%AD%A3%E4%BA%A4%E5%8C%96%E6%96%B9%E6%B3%95/2.jpg" class>
-
-<p>这时需要考虑的是，是否存在一个线性变换，使得这两个矢量<strong>a</strong>和<strong>b</strong>可以正交。</p>
-<img src="/2024/07/29/%E9%9D%9E%E6%AD%A3%E4%BA%A4%E6%99%B6%E8%83%9E%E6%AD%A3%E4%BA%A4%E5%8C%96%E6%96%B9%E6%B3%95/3.jpg" class>
-
-<p>正交的条件非常好定，只需要两个矢量<strong>a</strong>和<strong>b</strong>的余弦值为0即可（在计算机中，可以设置一个非常小的值代替0），我们现在得到条件1：</p>
-<img src="/2024/07/29/%E9%9D%9E%E6%AD%A3%E4%BA%A4%E6%99%B6%E8%83%9E%E6%AD%A3%E4%BA%A4%E5%8C%96%E6%96%B9%E6%B3%95/4.jpg" class>
-
-<p>再来看看条件2。对于晶体而言，最重要的就是周期性条件，再结合一下对于POSCAR中3个矢量的理解。不难得到，变换矩阵的4个值都必须为整数，我们得到条件2：</p>
-<img src="/2024/07/29/%E9%9D%9E%E6%AD%A3%E4%BA%A4%E6%99%B6%E8%83%9E%E6%AD%A3%E4%BA%A4%E5%8C%96%E6%96%B9%E6%B3%95/5.jpg" class>
-
-<p>接下来就是另一个问题，我们建系是在右手系下建立的，那么在变换以后也必须满足右手系。由行列式公式：</p>
-<img src="/2024/07/29/%E9%9D%9E%E6%AD%A3%E4%BA%A4%E6%99%B6%E8%83%9E%E6%AD%A3%E4%BA%A4%E5%8C%96%E6%96%B9%E6%B3%95/6.jpg" class>
-
-<p>我们可以知道，要想保证变换后的两个矢量和<strong>c</strong> 满足右手系，这只需要这个变换矩阵的行列式为正的即可，我们得到条件3：</p>
-<img src="/2024/07/29/%E9%9D%9E%E6%AD%A3%E4%BA%A4%E6%99%B6%E8%83%9E%E6%AD%A3%E4%BA%A4%E5%8C%96%E6%96%B9%E6%B3%95/7.jpg" class>
-
-<p>好了，我们已经得到这个矩阵的所有约束条件了，但是还缺一个最小化的条件4：</p>
-<img src="/2024/07/29/%E9%9D%9E%E6%AD%A3%E4%BA%A4%E6%99%B6%E8%83%9E%E6%AD%A3%E4%BA%A4%E5%8C%96%E6%96%B9%E6%B3%95/8.jpg" class>
-
-<p>这样一来，我们就可以通过这样一个非线性规划问题（我没学过什么算法啊，这算是非线性规划还是线性规划啊。。。。。？？？？？？），得出来我们想要的这个矩阵。对于计算机求解，看似有点困难。但是非常幸运的是，这个矩阵中的4个数字都是整数，这样一来我们可以使用嵌套循环的方式就可以轻松解决这个问题啦！下面附Fortran代码：</p>
-<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> fun</span><br><span class="line"><span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line"><span class="keyword">contains</span></span><br><span class="line"><span class="keyword">real</span>(<span class="keyword">kind</span>=<span class="number">8</span>) <span class="function"><span class="keyword">function</span></span> cosin(a,b)</span><br><span class="line">        <span class="keyword">real</span>,<span class="keyword">dimension</span>(<span class="number">3</span>) :: a,b</span><br><span class="line">        <span class="keyword">real</span> :: temp1,temp2</span><br><span class="line">        temp1=<span class="built_in">sqrt</span>(a(<span class="number">1</span>)**<span class="number">2</span>+a(<span class="number">2</span>)**<span class="number">2</span>+a(<span class="number">3</span>)**<span class="number">2</span>)</span><br><span class="line">        temp2=<span class="built_in">sqrt</span>(b(<span class="number">1</span>)**<span class="number">2</span>+b(<span class="number">2</span>)**<span class="number">2</span>+b(<span class="number">3</span>)**<span class="number">2</span>)</span><br><span class="line">        cosin=(a(<span class="number">1</span>)*b(<span class="number">1</span>)+a(<span class="number">2</span>)*b(<span class="number">2</span>)+a(<span class="number">3</span>)*b(<span class="number">3</span>))/(temp1*temp2)</span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">function</span></span> cosin</span><br><span class="line"></span><br><span class="line"><span class="keyword">real</span>(<span class="keyword">kind</span>=<span class="number">8</span>) <span class="function"><span class="keyword">function</span></span> cross(a,b)</span><br><span class="line">        <span class="keyword">real</span>,<span class="keyword">dimension</span>(<span class="number">3</span>) :: a,b</span><br><span class="line">        cross=a(<span class="number">1</span>)*b(<span class="number">2</span>)-a(<span class="number">2</span>)*b(<span class="number">1</span>)</span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">function</span></span> cross</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">module</span> fun</span><br><span class="line"><span class="function"><span class="keyword">program</span></span> nonlinear</span><br><span class="line">        <span class="keyword">use</span> fun</span><br><span class="line"><span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line"><span class="keyword">integer</span> :: x1,x2,x3,x4,s1,s2,s3,s4</span><br><span class="line"><span class="keyword">integer</span> :: i,j,k,l,m,n</span><br><span class="line"><span class="keyword">integer</span> :: up,down,temp,min_val</span><br><span class="line"><span class="keyword">real</span>,<span class="keyword">dimension</span>(<span class="number">3</span>) :: a,b,a_prime,b_prime</span><br><span class="line"><span class="keyword">real</span> :: error</span><br><span class="line">a(<span class="number">1</span>)=<span class="number">0.0</span>  <span class="comment">!这里从左到右输入POSCAR中不正交向量a的第1列的值</span></span><br><span class="line">a(<span class="number">2</span>)=<span class="number">0.0</span>  <span class="comment">!这里从左到右输入POSCAR中不正交向量a的第2列的值</span></span><br><span class="line">a(<span class="number">3</span>)=<span class="number">0.0</span>  <span class="comment">!这里从左到右输入POSCAR中不正交向量a的第3列的值</span></span><br><span class="line">b(<span class="number">1</span>)=<span class="number">0.0</span>  <span class="comment">!这里从左到右输入POSCAR中不正交向量b的第1列的值</span></span><br><span class="line">b(<span class="number">2</span>)=<span class="number">0.0</span>  <span class="comment">!这里从左到右输入POSCAR中不正交向量b的第2列的值</span></span><br><span class="line">b(<span class="number">3</span>)=<span class="number">0.0</span>  <span class="comment">!这里从左到右输入POSCAR中不正交向量b的第3列的值</span></span><br><span class="line"></span><br><span class="line">up=<span class="number">10</span>  <span class="comment">!变换矩阵中每个整数的搜索上限</span></span><br><span class="line">down=-<span class="number">10</span>  <span class="comment">!变换矩阵中每个整数搜索下限</span></span><br><span class="line">error=<span class="number">1e-4</span>  <span class="comment">!最终最小化允许的误差</span></span><br><span class="line">min_val=<span class="number">1000000</span></span><br><span class="line">loop1:<span class="keyword">do</span> i=down,up</span><br><span class="line">loop2:  <span class="keyword">do</span> j=down,up</span><br><span class="line">loop3:          <span class="keyword">do</span> k=down,up</span><br><span class="line">loop4:                  <span class="keyword">do</span> l=down,up</span><br><span class="line">                                <span class="keyword">if</span> (i==<span class="number">0</span> .and. j==<span class="number">0</span>) <span class="keyword">then</span></span><br><span class="line">                                        <span class="keyword">cycle</span> loop4</span><br><span class="line">                                <span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line">                                <span class="keyword">if</span> (k==<span class="number">0</span> .and. l==<span class="number">0</span>) <span class="keyword">then</span></span><br><span class="line">                                        <span class="keyword">cycle</span> loop4</span><br><span class="line">                                <span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line">                                x1=i</span><br><span class="line">                                x2=j</span><br><span class="line">                                x3=k</span><br><span class="line">                                x4=l</span><br><span class="line">                                <span class="keyword">if</span> (x2*x3-x1*x4&lt;<span class="number">0</span>) <span class="keyword">then</span></span><br><span class="line">                                        a_prime(<span class="number">1</span>)=x1*a(<span class="number">1</span>)+x2*b(<span class="number">1</span>)</span><br><span class="line">                                        a_prime(<span class="number">2</span>)=x1*a(<span class="number">2</span>)+x2*b(<span class="number">2</span>)</span><br><span class="line">                                        a_prime(<span class="number">3</span>)=x1*a(<span class="number">3</span>)+x2*b(<span class="number">3</span>)</span><br><span class="line">                                        b_prime(<span class="number">1</span>)=x3*a(<span class="number">1</span>)+x4*b(<span class="number">1</span>)</span><br><span class="line">                                        b_prime(<span class="number">2</span>)=x3*a(<span class="number">2</span>)+x4*b(<span class="number">2</span>)</span><br><span class="line">                                        b_prime(<span class="number">3</span>)=x3*a(<span class="number">3</span>)+x4*b(<span class="number">3</span>)</span><br><span class="line">                                        <span class="comment">!write(*,*) abs(cosin(a_prime,b_prime))</span></span><br><span class="line">                                        <span class="keyword">if</span> (<span class="built_in">abs</span>(cosin(a_prime,b_prime))&lt;=error) <span class="keyword">then</span></span><br><span class="line">                                                temp=<span class="built_in">abs</span>(x1)+<span class="built_in">abs</span>(x2)+<span class="built_in">abs</span>(x3)+<span class="built_in">abs</span>(x4)</span><br><span class="line">                                                <span class="keyword">if</span> (temp&lt;min_val) <span class="keyword">then</span></span><br><span class="line">                                                        min_val=temp</span><br><span class="line"></span><br><span class="line">                                                        s1=x1</span><br><span class="line">                                                        s2=x2</span><br><span class="line">                                                        s3=x3</span><br><span class="line">                                                        s4=x4</span><br><span class="line">                                                <span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line">                                        <span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line">                                <span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line">                        <span class="keyword">end</span> <span class="keyword">do</span> loop4</span><br><span class="line">                <span class="keyword">end</span> <span class="keyword">do</span> loop3</span><br><span class="line">        <span class="keyword">end</span> <span class="keyword">do</span> loop2</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">do</span> loop1</span><br><span class="line"><span class="built_in">write</span>(*,*) s1,s2,s3,s4,min_val</span><br><span class="line"><span class="keyword">stop</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">program</span></span></span><br></pre></td></tr></table></figure>
-
-<p>别看套了4个循环，效率还可以。需要自己改误差参数以及矢量的分量值。输出的结果右4个数字，就是x1,x2,x3,x4的值，最后一个值是最小化的值，用来判断是否出错。</p>
-<p>改完以后就可以用M某软件重新定义晶胞操作（具体可以Google一下怎么做），即可得到正交后的晶胞（但是不是立方，仅仅只能正交）。对于三个矢量都不垂直的情况，可以再探究探究。需要注意的是，重新定义后的正交晶胞的体积会变大，M某软件会提示你体积变大了多少倍，所以最后还要自己看情况调整。</p>
-<p>最后最重要的是，任何变幻出来的正交胞，需要自己再三确认是否是原来的结构！！！！！！！！！！！！！！这非常重要，可以使用XRD辅助检验，一定要手动检查。</p>
-<p>懒人最近的施工计划：</p>
-<ol>
-<li><p>KNN最近邻算法</p>
-</li>
-<li><p>基于高斯核函数的密度估计算法</p>
-</li>
-<li><p>晶体空间群识别算法（这个论文还没看完捏~~）</p>
-</li>
-</ol>
-<p>就这样啦，拜拜~~~~~~~~~~~~~~~~~~~~</p>
-
-	
-	</div>
-  <a type="button" href="/2024/07/29/非正交晶胞正交化方法/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-<div class="row">
-	<div class="col-md-8">
-		<h3 class="title">
-			<a href="/2024/04/18/最近写的一些全自动处理脚本/" >最近写的一些全自动处理脚本</a>
-		</h3>
-		</div>
-	<div class="col-md-4">
-		<div class="date">post @ 2024-04-18  </div>
-		</div>
-	</div>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>最近写了一个扩胞全自动的脚本，使用Fortran编写，挂上来以防哪天丢了。</p>
-<p><mark>第1个是一个扩胞的脚本，支持的是POSCAR格式。</mark>下载链接：<a target="_blank" rel="noopener" href="https://github.com/whitecrn/crystal_enlarge">GitHub - whitecrn&#x2F;crystal_enlarge</a>文件中的原子支持前111号原子自动识别（包括第111号原子）；7种晶系全都支持；分数坐标和绝对坐标会自动识别。单个结构中除了不要出现112号以后的元素以外，没什么大的限制。<mark>但是，文件中不能出现原子电荷信息！！！！</mark><strong>比如Li+、F-这种。</strong></p>
-<p>使用方法：需要有gnu库的支持。将文件与需要扩胞的文件放在同一目录下。使用：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x crystal_enlarge</span><br></pre></td></tr></table></figure>
-
-<p>然后再使用命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./crystal_enlarge (x方向扩胞倍数) (y方向扩胞倍数) (z方向扩胞倍数) (需要扩胞的POSCAR文件名) (扩胞后输出的文件名)</span><br></pre></td></tr></table></figure>
-
-<p>举个例子：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./crystal_enlarge 2 3 4 POSCAR POSCAR-ENLARGE</span><br></pre></td></tr></table></figure>
-
-<p>上述代码就是将POSCAR文件进行扩胞操作，在x方向上×2 ， y方向上×3，z方向上×4，并且将扩胞的结果输出到POSCAR-ENLARGE里面。</p>
-<p>经过本人测试，从material project上随意下了几个三斜和单斜的晶胞，扩胞出来的结果都没有问题，略略略略略略！！！<strong>有技术问题或者要源代码可以想办法联系我~~0.0~</strong></p>
-<p><mark>哦对了，如果有需要转换以后的POSCAR格式文件转换成lammps文件的格式</mark>。可以参考我之前的一个poscar2data的文件脚本。所支持的体系也和上面的类似，不支持电荷信息，支持前111号原子的自动识别（包括111）转换。参考链接：<a target="_blank" rel="noopener" href="https://whitephys.com/2024/03/22/poscar2data/">VASP的POSCAR格式转换lammps格式脚本 | 蜡笔的blog</a>。关于库的支持，在poscar2data这个网页里面有很详细的讲解。</p>
-<p>下面举一些例子（随便在material project上找的结构）。<strong>和vesta软件扩出来的完全没有区别，但可以进行超大规模扩胞（windows下的vesta扩太大直接会变得很卡），以及命令行批量操作。</strong> 不过批量使用之前，最好先用vesta扩一个胞，经过对比无误后再进行大规模扩胞（手动保命）。</p>
-<p>我扩的三斜（mp-1176991, Li<sub>6</sub>MnSb<sub>3</sub>(PO<sub>4</sub>)<sub>6</sub>）：</p>
-<img src="/2024/04/18/%E6%9C%80%E8%BF%91%E5%86%99%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E8%87%AA%E5%8A%A8%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/%E4%B8%89%E6%96%9C_me.png" class>
-
-<p>vesta扩的三斜（mp-1176991）：</p>
-<img src="/2024/04/18/%E6%9C%80%E8%BF%91%E5%86%99%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E8%87%AA%E5%8A%A8%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/%E4%B8%89%E6%96%9C_vesta.png" class>
-
-<p>我扩的单斜（mp-705035, Mo(PO<sub>3</sub>)<sub>4</sub>）:</p>
-<img src="/2024/04/18/%E6%9C%80%E8%BF%91%E5%86%99%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E8%87%AA%E5%8A%A8%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/%E5%8D%95%E6%96%9C_me.png" class>
-
-<p>vesta扩的单斜：</p>
-<img src="/2024/04/18/%E6%9C%80%E8%BF%91%E5%86%99%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E8%87%AA%E5%8A%A8%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/%E5%8D%95%E6%96%9C_vesta.png" class>
-
-<p>我扩的六方（mp-1227397, BiPt<sub>2</sub>Pb）：</p>
-<img src="/2024/04/18/%E6%9C%80%E8%BF%91%E5%86%99%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E8%87%AA%E5%8A%A8%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/%E5%85%AD%E8%A7%92_me.png" class>
-
-<p>vesta扩的六方：</p>
-<img src="/2024/04/18/%E6%9C%80%E8%BF%91%E5%86%99%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E8%87%AA%E5%8A%A8%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/%E5%85%AD%E8%A7%92_vesta.png" class>
-
-<p>我扩的三方（mp-1227397, CsGeCl<sub>3</sub>）：</p>
-<img src="/2024/04/18/%E6%9C%80%E8%BF%91%E5%86%99%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E8%87%AA%E5%8A%A8%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/%E4%B8%89%E6%96%B9_me.png" class>
-
-<p>vesta扩的三方：</p>
-<img src="/2024/04/18/%E6%9C%80%E8%BF%91%E5%86%99%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E8%87%AA%E5%8A%A8%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/%E4%B8%89%E6%96%B9_vesta.png" class>
-
-<p>我扩的正交（mp-1227397, LiFe<sub>7</sub>O<sub>7</sub>F）：</p>
-<img src="/2024/04/18/%E6%9C%80%E8%BF%91%E5%86%99%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E8%87%AA%E5%8A%A8%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/%E6%AD%A3%E4%BA%A4_me.png" class>
-
-<p>vesta扩的正交：</p>
-<img src="/2024/04/18/%E6%9C%80%E8%BF%91%E5%86%99%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E8%87%AA%E5%8A%A8%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/%E6%AD%A3%E4%BA%A4_vesta.png" class>
-
-	
-	</div>
-  <a type="button" href="/2024/04/18/最近写的一些全自动处理脚本/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-<div class="row">
-	<div class="col-md-8">
-		<h3 class="title">
-			<a href="/2024/03/30/Fortran快速排序/" >Fortran快速排序</a>
-		</h3>
-		</div>
-	<div class="col-md-4">
-		<div class="date">post @ 2024-03-30  </div>
-		</div>
-	</div>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>处理数据的时候经常要用排序法，但是无可奈何我好像找不到gfortran上现成的排序程序。于是自己在写数学函数库的时候，也加入了这一部分的内容。</p>
-<p>起先写的是冒泡排序，但是同学建议我冒泡排序太慢了，对于数量多起来的排序时间会变得非常夸张，于是乎3.29下午开始学习快速排序。3.30中午终于把gfortran的快速排序代码写好了。。。。。  算法详解什么的有空再写吧，先贴代码。。。。</p>
-<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">recursive</span> <span class="function"><span class="keyword">subroutine</span></span> Fast_Sort(A,sort_type)</span><br><span class="line">        <span class="keyword">real</span> :: A(:)</span><br><span class="line">        <span class="keyword">character</span>(len=*),<span class="keyword">optional</span> :: sort_type</span><br><span class="line">        <span class="keyword">integer</span> :: head,tail,i,s</span><br><span class="line">        <span class="keyword">real</span> :: temp</span><br><span class="line">        <span class="keyword">real</span> :: pivot</span><br><span class="line">        <span class="keyword">if</span> (.not. <span class="built_in">present</span>(sort_type)) <span class="keyword">then</span></span><br><span class="line">                sort_type=<span class="string">&#x27;asc&#x27;</span></span><br><span class="line">        <span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line">        head=<span class="number">0</span></span><br><span class="line">        tail=<span class="built_in">size</span>(A)+<span class="number">1</span></span><br><span class="line">        pivot=A(<span class="number">1</span>)</span><br><span class="line">loop1:  <span class="keyword">do</span> <span class="keyword">while</span> (.true.)</span><br><span class="line">                tail=tail-<span class="number">1</span></span><br><span class="line">                head=head+<span class="number">1</span></span><br><span class="line">tail_loop:      <span class="keyword">do</span> <span class="keyword">while</span> (.true.)</span><br><span class="line">                        <span class="keyword">if</span> (A(tail) &lt;= pivot) <span class="keyword">then</span></span><br><span class="line">                                <span class="keyword">exit</span> tail_loop</span><br><span class="line">                        <span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line">                        tail=tail-<span class="number">1</span></span><br><span class="line">                <span class="keyword">end</span> <span class="keyword">do</span> tail_loop</span><br><span class="line"></span><br><span class="line">head_loop:      <span class="keyword">do</span> <span class="keyword">while</span> (.true.) </span><br><span class="line">                        <span class="keyword">if</span> (A(head) &gt; pivot) <span class="keyword">then</span></span><br><span class="line">                                <span class="keyword">exit</span> head_loop</span><br><span class="line">                        <span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line">                        head=head+<span class="number">1</span></span><br><span class="line">                        <span class="keyword">if</span> (head &gt; <span class="built_in">size</span>(A)) <span class="keyword">then</span></span><br><span class="line">                                <span class="keyword">exit</span> head_loop</span><br><span class="line">                        <span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line">                <span class="keyword">end</span> <span class="keyword">do</span> head_loop</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (head &lt; tail) <span class="keyword">then</span></span><br><span class="line">                        temp=A(head)</span><br><span class="line">                        A(head)=A(tail)</span><br><span class="line">                        A(tail)=temp</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (head == tail) <span class="keyword">then</span></span><br><span class="line">                        temp=A(head)</span><br><span class="line">                        A(head)=A(<span class="number">1</span>)</span><br><span class="line">                        A(<span class="number">1</span>)=temp</span><br><span class="line">                        <span class="keyword">exit</span> loop1</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (head &gt; tail) <span class="keyword">then</span></span><br><span class="line">                        temp=A(tail)</span><br><span class="line">                        A(tail)=A(<span class="number">1</span>)</span><br><span class="line">                        A(<span class="number">1</span>)=temp</span><br><span class="line">                        <span class="keyword">exit</span> loop1</span><br><span class="line">                <span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line">        <span class="keyword">end</span> <span class="keyword">do</span> loop1</span><br><span class="line">                <span class="keyword">if</span> (<span class="built_in">size</span>(A(:tail-<span class="number">1</span>)) &gt; <span class="number">1</span>) <span class="keyword">then</span></span><br><span class="line">                        <span class="keyword">call</span> Fast_Sort(A(:tail-<span class="number">1</span>))</span><br><span class="line">                <span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (<span class="built_in">size</span>(A(tail+<span class="number">1</span>:)) &gt; <span class="number">1</span>) <span class="keyword">then</span></span><br><span class="line">                        <span class="keyword">call</span> Fast_Sort(A(tail+<span class="number">1</span>:))</span><br><span class="line">                <span class="keyword">else</span> </span><br><span class="line">                        <span class="keyword">return</span></span><br><span class="line">                <span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">trim</span>(<span class="built_in">adjustl</span>(sort_type)) == <span class="string">&#x27;desc&#x27;</span>) <span class="keyword">then</span></span><br><span class="line">                <span class="keyword">call</span> reverse_array(A)</span><br><span class="line">        <span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">contains</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">subroutine</span></span> reverse_array(array)</span><br><span class="line">        <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">        <span class="keyword">real</span> :: array(:)</span><br><span class="line">        <span class="keyword">integer</span> :: s,i,temp</span><br><span class="line"></span><br><span class="line">        s=<span class="built_in">size</span>(array)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">do</span> i=<span class="number">1</span>,s/<span class="number">2</span></span><br><span class="line">                temp=array(i)</span><br><span class="line">                array(i)=array(s+<span class="number">1</span>-i)</span><br><span class="line">                array(s+<span class="number">1</span>-i)=temp</span><br><span class="line">        <span class="keyword">end</span> <span class="keyword">do</span></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span> reverse_array</span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span> Fast_Sort</span><br></pre></td></tr></table></figure>
-
-<p>使用了Fortran递归的方法写的快速排序算法。其实本体只有升序排序，如果可选输入参数为‘desc’，这个时候就会启动后面的reverse_array程序，将升序排号的结果翻转就是降序啦（偷懒第一名。。。。，其实是不会写降序，不要问我为什么？？？）。子程序我是放在模块里面使用的，所以实际上需要给这个子程序增加一个显式接口，关于显式接口可以上网搜。简单暴力操作就是在这个程序上下方加上如下内容：</p>
-<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> xxxx(自己定模块的名字)</span><br><span class="line"><span class="keyword">contains</span></span><br><span class="line"></span><br><span class="line">#这里放上面的代码</span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">module</span> xxxx(和前面的名字一致)</span><br></pre></td></tr></table></figure>
-
-<p>如果想要将子程序和主程序放在一起，可以将上述内容放在主程序之前(模块必须放在主程序之前)然后在主程序中，在<strong>implicit none</strong>之前写上：</p>
-<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> xxx(这个名字是<span class="keyword">module</span>的名字)</span><br><span class="line"><span class="keyword">implicit</span> <span class="keyword">none</span></span><br></pre></td></tr></table></figure>
-
-<p>然后在需要使用的时候就可以：</p>
-<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">call</span> Fast_Sort(A,<span class="string">&#x27;asc/desc&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>A为需要排序的数组，后一个参数可以输入字符串’asc’和’desc’，输入’asc’的时候为升序排列，’desc’时为降序排列，**<mark>当不输入第二个参数或者输入的第二个参数不是‘asc’和’desc’其中之一时，默认为升序。</mark>**</p>
-<p>最后是对于10w个随机数，使用冒泡排序和快速排序二者所耗时间比较，时间是cpu时间，单位应该是s吧？</p>
-<img src="/2024/03/30/Fortran%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/20240331110029.png" class>
-
-<p>效果还是很明显的，快速排序耗时远远小于冒泡排序，嘻嘻~~</p>
-<p>至于如果想把子程序和主程序分开放，可以上网搜一下Fortran的静态库或者动态库的编译和链接，这里就不详细讲了，认识我的话可以来问我hhhhh~</p>
-<p>就这样啦，拜拜~~</p>
-
-	
-	</div>
-  <a type="button" href="/2024/03/30/Fortran快速排序/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-<div class="row">
-	<div class="col-md-8">
-		<h3 class="title">
-			<a href="/2024/03/22/poscar2data/" >VASP的POSCAR格式转换lammps格式脚本</a>
-		</h3>
-		</div>
-	<div class="col-md-4">
-		<div class="date">post @ 2024-03-22  </div>
-		</div>
-	</div>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>近期处理POSCAR转换lammps的data文件的时候，需要ovito协助处理，但是命令行的大量处理好像还是成问题的（特别是我几百个POSCAR需要转换的时候，一个个手拖就不现实了）</p>
-<p>之前写过一些自动转换格式的脚本，但是只是针对于某一个特定的结构进行的，多一个原子少一个原子，原子换一下就用不了的。而我每次处理的POSCAR文件的原子种类和个数都在发生变化。于是一怒之下就写了这个通用的脚本，<strong>可以直接将含有前111号原子的POSCAR文件自动转换成lammps可读取的data文件格式。*<em><strong>支持分数坐标和绝对坐标的读取。</strong></em></strong>下载链接：<a target="_blank" rel="noopener" href="https://github.com/whitecrn/poscar2data">GitHub - whitecrn&#x2F;poscar2data: This scrip can help you transform POSCAR file to lammps data file</a></p>
-<p> 本脚本使用<strong>gfortran</strong>编写，使用的是gnu编译器。脚本所需要的依赖如下图所示。</p>
- <img src="/2024/03/22/poscar2data/20240322130319.png" class>
-
-<p> 文件的源代码我没有放上来，直接上传的是编译好的文件。因为源代码里面有很多我自己写的库文件，最终合成打包起来比较麻烦，有需要的话可以联系我问我拿。源代码各文件如下图。。。。。。</p>
- <img src="/2024/03/22/poscar2data/20240322132814.png" class>
-
-<p>POSCAR需要比较固定的开头格式，中间不能有空行（如果格式不是固定的，ovito也读取不了。。。。）。格式图下图所示。</p>
- <img src="/2024/03/22/poscar2data/20240322130111.png" class>
-
-<p>第一行是<strong>体系的名称</strong>，第二行是<strong>缩放因子</strong>，第三行到第五行是<strong>晶格参数</strong>，第六行是<strong>原子种类信息</strong>，第七行是<strong>原子对应的原子数</strong>，第八行是<strong>区分绝对坐标和分数坐标</strong>，第九行以后开始写的是原子位置信息。目前只能做到基于此类的转换，如果含有电荷信息可能无法使用。<strong>原子的种类限制在前111号元素，原子的个数和种类个数都不会受到限制。</strong></p>
-<p>使用脚本很简单，下载以后（Linux系统上需要装有gnu编译器）。<strong>将脚本放在与需要处理的POSCAR文件同一目录之下</strong>，使用命令：<strong>chmod +x poscar2data</strong>,为脚本增加可执行权限。</p>
-<p>然后如果需要转换的POSCAR格式文件名称就是POSCAR，那使用命令：**.&#x2F;poscar2data**，将会自动转换POSCAR文件，输出成一个新的data文件：lammps.data，即可完成。</p>
-<p> 如果你的需要转换的文件不叫POSCAR，需要输出的文件想换一个名称，可以使用命令：**.&#x2F;poscar2data (输入文件名称) (输出文件名称)** ，例如: <strong>.&#x2F;poscar2data POSCAR1 FeCoNi.data</strong>，那么脚本就会读入<strong>POSCAR1</strong>文件，输出lampps格式的<strong>FeCoNi.data</strong>文件。</p>
-<p><strong>！！！注意，如果你要输入可选参数的时候，第一个必须为输入文件的名称，第二个必须为输出文件的名称，如果只输入一个文件名称，则默认这个名称为输入文件的名称。</strong></p>
-<p>转载请注明出处：GitHub whitecrn</p>
-
-	
-	</div>
-  <a type="button" href="/2024/03/22/poscar2data/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-<div class="row">
-	<div class="col-md-8">
-		<h3 class="title">
-			<a href="/2024/01/18/一些计划和想法/" >一些计划和想法</a>
-		</h3>
-		</div>
-	<div class="col-md-4">
-		<div class="date">post @ 2024-01-18  </div>
-		</div>
-	</div>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>发现寒假要做的事情太多了，书也看不过来了，大概列一下寒假想要学的东西的先后顺序吧。学是肯定学不完的，学完了中文的书还要看经典著作，太难了我。</p>
-<ol>
-<li><p>《热力学与统计物理》。这本感觉我必须要在寒假学完，MD很多内容（系综之类的，蒙特卡洛模拟啥的，还有固体物理很多分布）都和热统有关系。本科的时候只自学过《热学》，在赵凯华先生的书上顺带学了一些统计物理的内容，但是不够全面。我是想优先使用汪志诚先生的《热力学·统计物理》，这本内容看起来并不是非常难，我觉得可以很快的扫过。还准备了朗道的《统计物理学 Ⅰ》，朗道这本热统感觉比其他九卷看起来难度要低一些，我觉得学完汪先生的可以再看看朗道的。</p>
-</li>
-<li><p>《固体物理》。这本没啥好说的，第二重要。先把胡安先生的课跟完，再复习推导一下前面几章的内容，然后有时间的话看一下ASHCROFT&#x2F;MERMIN两位的《SOLID STATE PHYSICS》。</p>
-</li>
-<li><p>《电动力学》。这个蛮重要的，量子场论里面提到了非常多这个内容，直接跟着田光善老师的课就好了。其实我一直想看王振林老师的《现代电动力学》，但无可奈何时间不够。</p>
-</li>
-<li><p>《量子场论》。这个课挺有意思的，但是帮助不是非常非常大，所以我排在了第四个。打算直接啃Pekin的《An Introduction to Quantum Field Theory》，能学多少是多少吧这个。</p>
-</li>
-<li><p>《Fortran》。没啥好说的，希望把《Fortran 95程序设计》剩下的内容补完，这个应该不会花太长时间。</p>
-</li>
-<li><p>《机器学习》。这个主要是大概了解整个机器学习原理和过程，懂得分析数据就行，中间的推导和具体公式应用就不花时间学了，不然是无止境的。</p>
-</li>
-<li><p>《量子力学》。《量子力学》和《高等量子力学》都学完了，但是还是希望有空可以看一下科恩·塔诺季的《量子力学》。我觉得这本书看到现在为止，很多内容分析和讲的都非常透彻，感觉可以多读读。</p>
-</li>
-<li><p>剩下就是一些计算机上的一些计划，不过真正做完都不知道啥时候了。想把量子力学学到的公式打一个总结文档出来；编写一个Fortran子程序或者库，把这学期《数值分析》学到的各种算法写成Fortran，这样以后要使用或者调用也方便（已经有matlab代码了，翻译一下就好了）；还有想把科研过程中学到的各种数据处理之类或者经验上的内容分享到博客上来，这个看有时间就更新吧，差不多就这样。</p>
-</li>
-</ol>
-
-	
-	</div>
-  <a type="button" href="/2024/01/18/一些计划和想法/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-
-		</div>
-
-		<!-- pagination -->
-		<div>
-  		<center>
-		<div class="pagination">
-
-   
-</div>
-
-  		</center>
-		</div>
-
-		
-		
-	</div> <!-- col-md-9 -->
-
-	
-		<div class="col-md-3">
-	<div id="sidebar">
-	
-			
-  <div id="site_search">
-   <div class="form-group">
-    <input type="text" id="local-search-input" name="q" results="0" placeholder="Search" class="st-search-input st-default-search-input form-control"/>
-   </div>  
-  <div id="local-search-result"></div>
-  </div>
-
-
-		
-			
-		
-			
-	<div class="widget">
-		<h4>Tag Cloud</h4>
-		<ul class="tag_box inline list-unstyled">		
-		
-			<li><a href="/tags/学习/">学习<span>5</span></a></li>
-		
-		 
-		</ul>
-	</div>
-
-
-		
-			
-<div class="widget">
-  <h4>Recent Posts</h4>
-  <ul class="entry list-unstyled">
     
-      <li>
-        <a href="/2024/12/31/基于CUDA-C++的平均MSD计算/" ><i class="fa fa-file-o"></i>使用CUDA C++编写平均MSD计算</a>
-      </li>
     
-      <li>
-        <a href="/2024/07/29/非正交晶胞正交化方法/" ><i class="fa fa-file-o"></i>非正交晶胞正交化方法</a>
-      </li>
-    
-      <li>
-        <a href="/2024/04/18/最近写的一些全自动处理脚本/" ><i class="fa fa-file-o"></i>最近写的一些全自动处理脚本</a>
-      </li>
-    
-      <li>
-        <a href="/2024/03/30/Fortran快速排序/" ><i class="fa fa-file-o"></i>Fortran快速排序</a>
-      </li>
-    
-      <li>
-        <a href="/2024/03/22/poscar2data/" ><i class="fa fa-file-o"></i>VASP的POSCAR格式转换lammps格式脚本</a>
-      </li>
-    
-  </ul>
+
+
+
+<!-- Site Analytics -->
+
+ 
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
+
+    <!-- page preloader -->
+    <div class="trm-preloader">
+    <div class="trm-holder">
+        <div class="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
 </div>
+    <!-- page preloader end -->
 
-		
-			
-<div class="widget">
-	<h4>Links</h4>
-	<ul class="blogroll list-unstyled">
-	
-		<li><i class="false"></i><a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" title="" target="_blank"]);">hexo-theme-bithack</a></li>
-	
-	</ul>
+    <!-- change mode preloader -->
+    <div class="trm-mode-swich-animation-frame">
+    <div class="trm-mode-swich-animation">
+        <i class="i-sun"><i class="iconfont far fa-sun"></i></i>
+        <div class="trm-horizon"></div>
+        <i class="i-moon"><i class="iconfont far fa-moon"></i></i>
+    </div>
 </div>
+    <!-- change mode preloader end -->
 
-
-		
-	</div> <!-- sidebar -->
-</div> <!-- col-md-3 -->
-
-	
-	
-</div> <!-- row-fluid -->
-	</div>
-  </div>
-  <div class="container-narrow">
-  <footer> <p>
-  
-  &copy; 2025 白色的蜡笔's Blog
-  
-      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>  
-</p>
- </footer>
-</div> <!-- container-narrow -->
-  
-
-
-  
-<a id="gotop" href="#">   
-  <span>⬆︎TOP</span>
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" style="opacity: 0">
+            <!-- top bar -->
+            <header class="trm-top-bar">
+	<div class="container">
+		<div class="trm-left-side">
+			<!-- logo -->
+<a href="/" class="trm-logo-frame trm-anima-link">
+    
+        <img alt="logo" src="/img/favicon.svg">
+    
+    
+        <div class="trm-logo-text">
+            Async<span>Theme</span>
+        </div>
+    
 </a>
+<!-- logo end -->
+		</div>
+		<div class="trm-right-side">
+			<!-- menu -->
+<div class="trm-menu">
+    <nav>
+        <ul>
+            
+            <li class="menu-item-has-children current-menu-item">
+                <a  href="/" target="">
+                    Home
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/archives/" target="">
+                    Archives
+                </a>
+                
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+<!-- menu end -->
+			
+    <!-- mode switcher place -->
+    <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <i class="iconfont far fa-sun"></i>
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+            <i class="iconfont far fa-moon"></i>
+        </div>
+    </div>
+    <!-- mode switcher place end -->
 
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/main.js"></script>
-<script src="/js/search.js"></script> 
+			
+		</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</header>
+            <!-- top bar end -->
+
+            <!-- body -->
+            <div class="trm-content-start">
+    <!-- banner -->
+    <div class="trm-banner">
+    
+    <!-- banner cover -->
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" src="/img/banner.png">
+    <!-- banner cover end -->
+    
+
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-4"></div>
+                
+                <div class="col-lg-8">
+
+                    <!-- banner title -->
+                    <div class="trm-banner-text ">
+                        <div class="trm-label trm-mb-20">
+                            Hi my new friend!
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            树深时见鹿，<br>溪午不闻钟。
+                        </h1>
+
+                        
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        index.html
+                                    </span>
+                                </li>
+                            </ul>
+                        
+                    </div>
+                    <!-- banner title end -->
+
+                    <!-- scroll hint -->
+                    <span id="scroll-triger" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label">Scroll down</span>
+                    </span>
+                    <!-- scroll hint end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
+    <!-- banner end -->
+    <div class="container">
+        <div class="row">
+            
+                <div class="trm-page-sidebar col-lg-4 hidden-sm">
+                    <!-- main card -->
+                    <div class="trm-main-card-frame trm-sidebar">
+    <div class="trm-main-card"> 
+        <!-- card header -->
+<div class="trm-mc-header">
+    <div class="trm-avatar-frame trm-mb-20">
+        <img alt="Avatar" class="trm-avatar" src="/img/avatar.jpg">
+    </div>
+    <h5 class="trm-name trm-mb-15">
+        ThemeAsync
+    </h5>
+    
+</div>
+<!-- card header end -->
+        <!-- sidebar social -->
+
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<div class="trm-social">
+    
+        <a href="https://github.com" title="Github" rel="nofollow" target="_blank">
+            <i class="iconfont fab fa-github"></i>
+        </a>
+    
+</div>
+
+<!-- sidebar social end -->
+        <!-- info -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<ul class="trm-table trm-mb-20">
+    
+        <li>
+            <div class="trm-label">
+                Residence:
+            </div>
+            <div class="trm-label trm-label-light">
+                Mars
+            </div>
+        </li>
+    
+</ul>
+<!-- info end -->
+
+        
+    </div>
+</div>
+                    <!-- main card end -->
+                </div>
+            
+            <div class="trm-page-content col-lg-8">
+                <div id="trm-content" class="trm-content">
+                    <!-- categories -->
+
+    <div class="row hidden-sm">
+        
+        
+    </div>
+
+<!-- categories end -->
+
+<!-- newest publications -->
+<div class="row">
+    
+        <div class="col-lg-12">
+            <!-- title -->
+            <h5 class="trm-title-with-divider">
+                Newest Publications 
+                <span data-number="01"></span>
+            </h5>
+        </div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/2024/12/31/%E5%9F%BA%E4%BA%8ECUDA-C++%E7%9A%84%E5%B9%B3%E5%9D%87MSD%E8%AE%A1%E7%AE%97/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/img/block.jpg">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" #.">
+                    Unclassified
+                </a>
+            </div>
+            <h5>
+                <a href="/2024/12/31/%E5%9F%BA%E4%BA%8ECUDA-C++%E7%9A%84%E5%B9%B3%E5%9D%87MSD%E8%AE%A1%E7%AE%97/" class="trm-anima-link">
+                    使用CUDA C++编写平均MSD计算
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>24/12/31</li>
+                <li>16:33</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/2024/07/29/%E9%9D%9E%E6%AD%A3%E4%BA%A4%E6%99%B6%E8%83%9E%E6%AD%A3%E4%BA%A4%E5%8C%96%E6%96%B9%E6%B3%95/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/img/block.jpg">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" #.">
+                    Unclassified
+                </a>
+            </div>
+            <h5>
+                <a href="/2024/07/29/%E9%9D%9E%E6%AD%A3%E4%BA%A4%E6%99%B6%E8%83%9E%E6%AD%A3%E4%BA%A4%E5%8C%96%E6%96%B9%E6%B3%95/" class="trm-anima-link">
+                    非正交晶胞正交化方法
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>24/07/29</li>
+                <li>17:39</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/2024/04/18/%E6%9C%80%E8%BF%91%E5%86%99%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E8%87%AA%E5%8A%A8%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/img/block.jpg">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" #.">
+                    Unclassified
+                </a>
+            </div>
+            <h5>
+                <a href="/2024/04/18/%E6%9C%80%E8%BF%91%E5%86%99%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E8%87%AA%E5%8A%A8%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/" class="trm-anima-link">
+                    最近写的一些全自动处理脚本
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>24/04/18</li>
+                <li>18:52</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/2024/03/30/Fortran%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/img/block.jpg">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" #.">
+                    Unclassified
+                </a>
+            </div>
+            <h5>
+                <a href="/2024/03/30/Fortran%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" class="trm-anima-link">
+                    Fortran快速排序
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>24/03/30</li>
+                <li>17:39</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/2024/03/22/poscar2data/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/img/block.jpg">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" #.">
+                    Unclassified
+                </a>
+            </div>
+            <h5>
+                <a href="/2024/03/22/poscar2data/" class="trm-anima-link">
+                    VASP的POSCAR格式转换lammps格式脚本
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>24/03/22</li>
+                <li>13:49</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/2024/01/18/%E4%B8%80%E4%BA%9B%E8%AE%A1%E5%88%92%E5%92%8C%E6%83%B3%E6%B3%95/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/img/block.jpg">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" #.">
+                    Unclassified
+                </a>
+            </div>
+            <h5>
+                <a href="/2024/01/18/%E4%B8%80%E4%BA%9B%E8%AE%A1%E5%88%92%E5%92%8C%E6%83%B3%E6%B3%95/" class="trm-anima-link">
+                    一些计划和想法
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>24/01/18</li>
+                <li>17:46</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</div>
+<!-- newest publications end -->
 
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
+    <div class="trm-pagination">
+        <span class="page-number current">1</span>
+    </div>
+
+
+                    <div class="trm-divider footer-divider"></div>
+
+                    <!-- footer -->
+                    <footer class="trm-footer-card trm-scroll-animation">
+
+    
+
+    
+
+    
+        <div class="trm-footer-item">
+            <span>
+                Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> v7.1.1
+            </span>
+            <span class="footer-separator" data-separator=" | "></span>
+            <span> 
+                Theme - 
+                <a rel="noopener" href='https://github.com/MaLuns/hexo-theme-async' target='_blank'>Async</a>
+                v2.2.6
+            </span>
+        </div>
+      
+
+     
+
+     
+</footer>
+                    <!-- footer end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- body end -->
+
+            
+
+            
+<div class="trm-fixed-container">
+    
+    
+    
+    <div id="trm-back-top" class="trm-fixed-btn" data-title="Back To Top">
+        <i class="iconfont fas fa-arrow-up"></i>
+    </div>
+</div>
+        </div>
+      </div>
+      <!-- scroll container end -->
+  </div>
+  <!-- app wrapper end -->
+
+  
+  <!-- Plugin -->
+
+
+
+
+    
+    
+<script src="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+    
+
+    
+
+    
+
+    <!-- 数学公式 -->
+    
+
+    <!-- 评论插件 -->
+    
+
+		
+
+
+
+
+    <!-- Service Worker -->
+    
+    <!-- baidu push -->
+    
+
+
+<script id="async-script" src="/js/main.js?v=2.2.6"></script>
+
+<!-- CDN -->
+
+
+    
+
+    
+
+    
 
 
 
 </body>
-   </html>
+
+</html>

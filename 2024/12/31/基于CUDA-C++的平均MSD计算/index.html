@@ -1,139 +1,329 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="pragma" content="no-cache">
-  <meta http-equiv="cache-control" content="no-cache">
-  <meta http-equiv="expires" content="0">
-  
-  <title>使用CUDA C++编写平均MSD计算 | 蜡笔的blog</title>
-  <meta name="author" content="白色的蜡笔">
-  
-  <meta name="description" content="最近在学习C++和CUDA C++，刚好我的动力学过程需要计算MSD，无奈于原子多步数多，计算太慢，于是编写了这个基于CUDA C++的mean square displacement (MSD)计算程序。基本所有的体系无论原子数多少都可以用了。
-代码已经上传到仓库了：GitHub - whitec">
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="theme-color" content="#317EFB" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta name="description" content="最近在学习C++和CUDA C++，刚好我的动力学过程需要计算MSD，无奈于原子多步数多，计算太慢，于是编写了这个基于CUDA C++的mean square displacement (MSD)计算程序。基本所有的体系无论原子数多少都可以用了。 代码已经上传到仓库了：GitHub - whitecrn&#x2F;MSD_GPU: a CUDA C++ program to calculate averag">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用CUDA C++编写平均MSD计算">
+<meta property="og:url" content="http://example.com/2024/12/31/%E5%9F%BA%E4%BA%8ECUDA-C++%E7%9A%84%E5%B9%B3%E5%9D%87MSD%E8%AE%A1%E7%AE%97/index.html">
+<meta property="og:site_name" content="蜡笔的blog">
+<meta property="og:description" content="最近在学习C++和CUDA C++，刚好我的动力学过程需要计算MSD，无奈于原子多步数多，计算太慢，于是编写了这个基于CUDA C++的mean square displacement (MSD)计算程序。基本所有的体系无论原子数多少都可以用了。 代码已经上传到仓库了：GitHub - whitecrn&#x2F;MSD_GPU: a CUDA C++ program to calculate averag">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="article:published_time" content="2024-12-31T08:33:28.000Z">
+<meta property="article:modified_time" content="2025-01-02T14:04:09.151Z">
+<meta property="article:author" content="白色的蜡笔">
+<meta property="article:tag" content="学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/404.jpg">
 
-  <meta property="og:title" content="使用CUDA C++编写平均MSD计算"/>
-  <meta property="og:site_name" content="蜡笔的blog"/>
 
-  
-    <meta property="og:image" content=""/>
-  
+<title >使用CUDA C++编写平均MSD计算</title>
 
-  
-    <link rel="alternative" href="/atom.xml" title="蜡笔的blog" type="application/atom+xml">
-  
-  
-    <link href="/favicon.png" rel="icon">
-  
-  
-  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/prism.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<!-- Favicon -->
 
-  <script src="/js/jquery-2.0.3.min.js"></script>
+    <link href='/img/favicon.svg?v=2.2.6' rel='icon' type='image/png' sizes='16x16' ></link>
 
-  <!-- analytics -->
-  
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-70812759-1"></script>
+
+    <link href='/img/favicon.svg?v=2.2.6' rel='icon' type='image/png' sizes='32x32' ></link>
+
+
+
+
+<!-- Plugin -->
+
+
+
+
+    
+<link rel="stylesheet" href="/css/plugins/bootstrap.row.css">
+
+    
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css">
+
+    
+    
+
+
+
+
+<!-- Icon -->
+
+    
+<link rel="stylesheet" href="/css/plugins/font-awesome.min.css">
+
+
+
+
+<!-- Variable -->
+<script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"白色的蜡笔","root":"/","typed_text":null,"theme_version":"2.2.6","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/img/favicon.svg","icon16":"/img/favicon.svg","icon32":"/img/favicon.svg","apple_touch_icon":null,"webmanifest":null,"visibilitychange":false,"hidden":"/failure.ico","show_text":"(/≧▽≦/)Hey! Good again!","hide_text":"(●—●)Oh, crash!"},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}.","hits":"${hits} results found","hits_time":"${hits} results found in ${time} ms","author":"Post author: ","copyright_link":"Post link: ","copyright_license_title":"Copyright Notice: ","copyright_license_content":"All articles in this blog are licensed under undefined unless otherwise stated.","copy_success":"Copied","copy_failure":"Copy failed","open_read_mode":"Enter reading mode","exit_read_mode":"Exit reading mode","notice_outdate_message":"It has been undefined days since the last update, the content of the article may be outdated.","sticky":"TOP","just":"Just","min":"minutes ago","hour":"hours ago","day":"days ago","month":"months ago"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false},"toc":{"post_title":true},"live_time":{"start_time":"","prefix":"The blog has been lovely to run undefined day"},"danmu":{"enable":false,"el":".trm-banner"}};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2025-01-02 22:04:09"};</script>
+
+<!-- Theme mode css -->
+<link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.2.6" id="trm-switch-style">
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-70812759-1');
+    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
+    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
+    let type = catchMode === 'style-dark' ? 'add' : 'remove';
+    document.documentElement.classList[type]('dark')
 </script>
 
+<!-- CDN -->
+
+
+    
+    
 
 
 
+<!-- Site Analytics -->
 
+ 
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.1.1"></head>
 
-<meta name="generator" content="Hexo 7.1.1"></head>
+<body>
 
- <body>  
-  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-		<span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-	  <a class="navbar-brand" href="/">蜡笔的blog</a>
-      <div class="collapse navbar-collapse nav-menu">
-		<ul class="nav navbar-nav">
-		  
-		  <li>
-			<a href="/archives" title="All the articles.">
-			  <i class=""></i>Archives
-			</a>
-		  </li>
-		  
-		  <li>
-			<a href="/categories" title="All the categories.">
-			  <i class=""></i>Categories
-			</a>
-		  </li>
-		  
-		  <li>
-			<a href="/tags" title="All the tags.">
-			  <i class=""></i>Tags
-			</a>
-		  </li>
-		  
-		  <li>
-			<a href="/about" title="About me.">
-			  <i class=""></i>About
-			</a>
-		  </li>
-		  
-		  <li>
-			<a href="/atom.xml" title="Subscribe me.">
-			  <i class=""></i>RSS
-			</a>
-		  </li>
-		  
-		</ul>
-      </div>
-    </div> <!-- container -->
-</nav>
-<div class="clearfix"></div>
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
 
-  <div class="container">
-  	<div class="content">
-    	 
+    <!-- page preloader -->
+    <div class="trm-preloader">
+    <div class="trm-holder">
+        <div class="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+    <!-- page preloader end -->
 
+    <!-- change mode preloader -->
+    <div class="trm-mode-swich-animation-frame">
+    <div class="trm-mode-swich-animation">
+        <i class="i-sun"><i class="iconfont far fa-sun"></i></i>
+        <div class="trm-horizon"></div>
+        <i class="i-moon"><i class="iconfont far fa-moon"></i></i>
+    </div>
+</div>
+    <!-- change mode preloader end -->
 
-	
-		<div class="page-header">
-			<h1> 使用CUDA C++编写平均MSD计算</h1>
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" style="opacity: 0">
+            <!-- top bar -->
+            <header class="trm-top-bar">
+	<div class="container">
+		<div class="trm-left-side">
+			<!-- logo -->
+<a href="/" class="trm-logo-frame trm-anima-link">
+    
+        <img alt="logo" src="/img/favicon.svg">
+    
+    
+        <div class="trm-logo-text">
+            Async<span>Theme</span>
+        </div>
+    
+</a>
+<!-- logo end -->
 		</div>
-	
+		<div class="trm-right-side">
+			<!-- menu -->
+<div class="trm-menu">
+    <nav>
+        <ul>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/" target="">
+                    Home
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/archives/" target="">
+                    Archives
+                </a>
+                
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+<!-- menu end -->
+			
+    <!-- mode switcher place -->
+    <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <i class="iconfont far fa-sun"></i>
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+            <i class="iconfont far fa-moon"></i>
+        </div>
+    </div>
+    <!-- mode switcher place end -->
 
+			
+		</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</header>
+            <!-- top bar end -->
 
+            <!-- body -->
+            
+<div class="trm-content-start">
+    <!-- banner -->
+    <div class="trm-banner">
+    
+    <!-- banner cover -->
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" src="/img/banner.png">
+    <!-- banner cover end -->
+    
 
-<div class="row post">
-	<!-- cols -->
-	
-	<div id="top_meta"></div>
-	<div class="col-md-9">
-	
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-4"></div>
+                
+                <div class="col-lg-8">
 
-	<!-- content -->
-	<div class="mypage">		
-	  		
+                    <!-- banner title -->
+                    <div class="trm-banner-text ">
+                        <div class="trm-label trm-mb-20">
+                            NEWS LETTER
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            使用CUDA C++编写平均MSD计算
+                        </h1>
 
-	  <p>最近在学习C++和CUDA C++，刚好我的动力学过程需要计算MSD，无奈于原子多步数多，计算太慢，于是编写了这个基于<mark>CUDA C++</mark>的mean square displacement (MSD)计算程序。基本所有的体系无论原子数多少都可以用了。</p>
-<p>代码已经上传到仓库了：<a target="_blank" rel="noopener" href="https://github.com/whitecrn/MSD_GPU">GitHub - whitecrn&#x2F;MSD_GPU: a CUDA C++ program to calculate averaged mean-square-displacement.</a>，下载全部文件，在当前有文件的目录用：make命令即可，然后自己选用哪张卡算（网上有教程，一行命令的事情），然后运行编译出来的可执行文件即可。不过我编译时选的是仅支持计算能力为7.0或8.0以上的卡，具体查询自己的卡能不能算可以查询这个网站：<a target="_blank" rel="noopener" href="https://developer.nvidia.com/cuda-gpus">CUDA GPUs - Compute Capability | NVIDIA Developer</a>，不行的话可以自己改Makefile的编译内容。确保自己已经安装了CUDA，并且可以使用nvcc命令，如果不能使用nvcc命令，需要把CUDA的bin加入环境变量（具体看网上教程）。软件用法：.&#x2F;msd_gpu，后面加参数：</p>
+                        
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        2024
+                                    </span>
+                                </li>
+                            </ul>
+                        
+                    </div>
+                    <!-- banner title end -->
+
+                    <!-- scroll hint -->
+                    <span id="scroll-triger" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label">Scroll down</span>
+                    </span>
+                    <!-- scroll hint end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
+    <!-- banner end -->
+    <div class="container">
+        <div class="row">
+            
+                <div class="trm-page-sidebar col-lg-4 hidden-sm">
+                    <!-- main card -->
+                    <div class="trm-main-card-frame trm-sidebar">
+    <div class="trm-main-card"> 
+        <!-- card header -->
+<div class="trm-mc-header">
+    <div class="trm-avatar-frame trm-mb-20">
+        <img alt="Avatar" class="trm-avatar" src="/img/avatar.jpg">
+    </div>
+    <h5 class="trm-name trm-mb-15">
+        ThemeAsync
+    </h5>
+    
+</div>
+<!-- card header end -->
+        <!-- sidebar social -->
+
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<div class="trm-social">
+    
+        <a href="https://github.com" title="Github" rel="nofollow" target="_blank">
+            <i class="iconfont fab fa-github"></i>
+        </a>
+    
+</div>
+
+<!-- sidebar social end -->
+        <!-- info -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<ul class="trm-table trm-mb-20">
+    
+        <li>
+            <div class="trm-label">
+                Residence:
+            </div>
+            <div class="trm-label trm-label-light">
+                Mars
+            </div>
+        </li>
+    
+</ul>
+<!-- info end -->
+
+        
+    </div>
+</div>
+                    <!-- main card end -->
+                </div>
+            
+            <div class="trm-page-content col-lg-8">
+                <div id="trm-content" class="trm-content">
+                    <div class="trm-post-info row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-calendar-alt trm-icon"></i><br>
+            12/31
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-clock trm-icon"></i><br>
+            16:33
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-user trm-icon"></i><br>
+            白色的蜡笔
+        </div>
+    </div>
+</div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <p>最近在学习C++和CUDA C++，刚好我的动力学过程需要计算MSD，无奈于原子多步数多，计算太慢，于是编写了这个基于<mark>CUDA C++</mark>的mean square displacement (MSD)计算程序。基本所有的体系无论原子数多少都可以用了。</p>
+<p>代码已经上传到仓库了：<a target="_blank" rel="noopener" href="https://github.com/whitecrn/MSD_GPU">GitHub - whitecrn/MSD_GPU: a CUDA C++ program to calculate averaged mean-square-displacement.</a>，下载全部文件，在当前有文件的目录用：make命令即可，然后自己选用哪张卡算（网上有教程，一行命令的事情），然后运行编译出来的可执行文件即可。不过我编译时选的是仅支持计算能力为7.0或8.0以上的卡，具体查询自己的卡能不能算可以查询这个网站：<a target="_blank" rel="noopener" href="https://developer.nvidia.com/cuda-gpus">CUDA GPUs - Compute Capability | NVIDIA Developer</a>，不行的话可以自己改Makefile的编译内容。确保自己已经安装了CUDA，并且可以使用nvcc命令，如果不能使用nvcc命令，需要把CUDA的bin加入环境变量（具体看网上教程）。软件用法：./msd_gpu，后面加参数：</p>
 <p>-h: 获得参数帮助</p>
 <p>-i: 设置需要计算原子的id，默认：1</p>
 <p>-f: 输入文件的名称，默认: dump.atom</p>
@@ -141,145 +331,172 @@
 <p>仅测试下GPU并行下的表现，没有具体对GPU代码做深入优化。GPU使用的是<mark>CUDA C++</mark>，CPU使用的是<mark>Fortran</mark>，<strong>二者在数值计算上不会差别特别大</strong>，这个是本次比较的基础（<strong>后面也会看到，使用GPU并行会比CPU单核计算本身快非常多，如果二者有差异也不会大到数量级的差别</strong>）。</p>
 <p>下面的测试CPU使用的是第10代i9，GPU使用3090Ti；使用的动力学体系是：12000原子（实际扩散离子8000原子），共10001步，数据文件大小3.69GB：</p>
 <p>i9 CPU:</p>
-<img src="/2024/12/31/%E5%9F%BA%E4%BA%8ECUDA-C++%E7%9A%84%E5%B9%B3%E5%9D%87MSD%E8%AE%A1%E7%AE%97/CPU.jpg" class>
-
-<p>只需要看红框内部的内容，第一个是对周期边界的处理：150 s；第二个是计算时间平均MSD：650 s！时间非常长，一次计算要15分钟左右，况且一次还要计算多个温度下的MSD，等的很着急♪(^∇^*)。（<strong>因为读取文件没有用上GPU并行处理，这里就不展示读取文件的速度了，读取文件大概都在80 s左右，不算特别久。</strong>）</p>
+<img src="/2024/12/31/%E5%9F%BA%E4%BA%8ECUDA-C++%E7%9A%84%E5%B9%B3%E5%9D%87MSD%E8%AE%A1%E7%AE%97/CPU.jpg" class  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'>
+<p>只需要看红框内部的内容，第一个是对周期边界的处理：150 s；第二个是计算时间平均MSD：650 s！时间非常长，一次计算要15分钟左右，况且一次还要计算多个温度下的MSD，等的很着急♪(^∇^<em>)。（<em>*因为读取文件没有用上GPU并行处理，这里就不展示读取文件的速度了，读取文件大概都在80 s左右，不算特别久。</em></em>）</p>
 <p>3090Ti:</p>
-<img src="/2024/12/31/%E5%9F%BA%E4%BA%8ECUDA-C++%E7%9A%84%E5%B9%B3%E5%9D%87MSD%E8%AE%A1%E7%AE%97/GPU.jpg" class>
-
+<img src="/2024/12/31/%E5%9F%BA%E4%BA%8ECUDA-C++%E7%9A%84%E5%B9%B3%E5%9D%87MSD%E8%AE%A1%E7%AE%97/GPU.jpg" class  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'>
 <p>只需要看红框内部的内容，第一个是对于周期边界的处理：1.07 s！！！这个时间，只占原来的0.7%！！！！！极大减少了需要计算的时间。第二个是计算时间平均MSD：111 s，时间缩短了83%！！！！！(<em>^_^</em>)，并行速度明显比单核运行的Fortran代码快非常多（这里还要说一下因为比较懒，Fortran的cpu代码用的单精度浮点数，CUDA C++我用的全都是double双精度浮点数，所以二者如果统一一下的话，实际上会更快更快）而且经过数据和作图验证，<mark>二者得到的MSD数据和图像是一致的（这里就不放MSD的图了，我用的自己课题的数据做验证的）</mark></p>
-<p>（再也不能以等数据为理由摸鱼力&#x2F;(ㄒoㄒ)&#x2F;~~）拜拜啦ヾ(•ω•&#96;)o，下次见！</p>
+<p>（再也不能以等数据为理由摸鱼力/(ㄒoㄒ)/~~）拜拜啦ヾ(•ω•`)o，下次见！</p>
 
-	  <div class="article-footer-copyright">
+</article>
+    
+    
 
-    本博客采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议(CC BY-NC-SA 4.0) 发布.</a>
+</div>
+<div class="trm-post-next-prev row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            Other Articles
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/2024/07/29/%E9%9D%9E%E6%AD%A3%E4%BA%A4%E6%99%B6%E8%83%9E%E6%AD%A3%E4%BA%A4%E5%8C%96%E6%96%B9%E6%B3%95/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/img/block.jpg">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" #.">
+                    Unclassified
+                </a>
+            </div>
+            <h5>
+                <a href="/2024/07/29/%E9%9D%9E%E6%AD%A3%E4%BA%A4%E6%99%B6%E8%83%9E%E6%AD%A3%E4%BA%A4%E5%8C%96%E6%96%B9%E6%B3%95/" class="trm-anima-link">
+                    非正交晶胞正交化方法
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>24/07/29</li>
+                <li>17:39</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
 </div>
 
-	</div>
-
-	
-	
-	<div>
-  	<center>
-
-	<div class="pagination">
-
-    
-    
-    <a type="button" class="btn btn-default disabled"><i class="fa fa-arrow-circle-o-left"></i>Prev</a>
     
 
-    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
-    
-    <a href="/2024/07/29/非正交晶胞正交化方法/" type="button" class="btn btn-default ">Next<i
-                class="fa fa-arrow-circle-o-right"></i></a>
+
+
+                    <div class="trm-divider footer-divider"></div>
+
+                    <!-- footer -->
+                    <footer class="trm-footer-card trm-scroll-animation">
+
     
 
     
+
+    
+        <div class="trm-footer-item">
+            <span>
+                Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> v7.1.1
+            </span>
+            <span class="footer-separator" data-separator=" | "></span>
+            <span> 
+                Theme - 
+                <a rel="noopener" href='https://github.com/MaLuns/hexo-theme-async' target='_blank'>Async</a>
+                v2.2.6
+            </span>
+        </div>
+      
+
+     
+
+     
+</footer>
+                    <!-- footer end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+            <!-- body end -->
 
+            
 
-    </center>
-	</div>
-	
-	<!-- comment -->
-	<!--
-<section id="comment">
-    <h2 class="title">Comments</h2>
-
+            
+<div class="trm-fixed-container">
     
-</section>
-
--->
-	
-	
-	
-	</div> <!-- col-md-9/col-md-12 -->
-
-
-	
-	<div id="side_meta">
-		<div class="col-md-3" id="post_meta"> 
-
-	<!-- date -->
-	
-	<div class="meta-widget">
-	<i class="fa fa-clock-o"></i>
-	2024-12-31 
-	</div>
-	
-
-	<!-- categories -->
     
-
-	<!-- tags -->
-	
-	<div class="meta-widget">
-	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
-    <ul id="tags" class="tag_box list-unstyled collapse in">	  
-	    
-  <li><a href="/tags/学习/">学习<span>5</span></a></li>
-    </ul>
-	</div>
-		
-
-	<!-- toc -->
-	<div class="meta-widget">
-	
-	</div>
-	
-    <hr>
-	
-</div><!-- col-md-3 -->
-
-		
-
-	</div>
-	
-		
-
-</div><!-- row -->
-
-<!--
- -->
-
-
-
-	</div>
+        <div class="trm-fixed-btn" data-title="Read Mode" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont fas fa-book-reader"></i>
+        </div>
+    
+    
+    <div id="trm-back-top" class="trm-fixed-btn" data-title="Back To Top">
+        <i class="iconfont fas fa-arrow-up"></i>
+    </div>
+</div>
+        </div>
+      </div>
+      <!-- scroll container end -->
   </div>
-  <div class="container-narrow">
-  <footer> <p>
-  
-  &copy; 2025 白色的蜡笔's Blog
-  
-      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>  
-</p>
- </footer>
-</div> <!-- container-narrow -->
-  
-
+  <!-- app wrapper end -->
 
   
-<a id="gotop" href="#">   
-  <span>⬆︎TOP</span>
-</a>
-
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/main.js"></script>
-<script src="/js/search.js"></script> 
+  <!-- Plugin -->
 
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
+
+
+    
+    
+<script src="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+    
+
+    
+
+    
+
+    <!-- 数学公式 -->
+    
+
+    <!-- 评论插件 -->
+    
+        
+
+        
+    
+
+		
+
+
+
+
+    <!-- Service Worker -->
+    
+    <!-- baidu push -->
+    
+
+
+<script id="async-script" src="/js/main.js?v=2.2.6"></script>
+
+<!-- CDN -->
+
+
+    
+
+    
+
+    
 
 
 
 </body>
-   </html>
+
+</html>
